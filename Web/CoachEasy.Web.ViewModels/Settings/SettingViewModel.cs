@@ -1,9 +1,8 @@
 ﻿namespace CoachEasy.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

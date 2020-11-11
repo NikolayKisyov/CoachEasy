@@ -26,6 +26,22 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Player> Players { get; set; }
+
+        public DbSet<Position> Positions { get; set; }
+
+        public DbSet<Picture> Pictures { get; set; }
+
+        public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<ContactForm> ContactForms { get; set; }
+
+        public DbSet<Coach> Coaches { get; set; }
+
+        public DbSet<CoachClients> CoachClients { get; set; }
+
+        public DbSet<Client> Clients { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

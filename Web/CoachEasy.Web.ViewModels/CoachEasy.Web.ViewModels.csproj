@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\CoachEasy.Services.Mapping\CoachEasy.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Home\" />
+  </ItemGroup>
+
 </Project>
