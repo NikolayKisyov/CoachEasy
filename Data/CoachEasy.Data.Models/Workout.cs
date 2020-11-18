@@ -8,9 +8,9 @@
 
     using CoachEasy.Data.Common.Models;
 
-    public class Skill : BaseDeletableModel<string>
+    public class Workout : BaseDeletableModel<string>
     {
-        public Skill()
+        public Workout()
         {
             this.Id = Guid.NewGuid().ToString();
         }
@@ -33,10 +33,10 @@
         public string VideoUrl { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Picture))]
+        public string ImageUrl { get; set; }
+
         public string PictureId { get; set; }
 
-        [Required]
         public virtual Picture Picture { get; set; }
     }
 }

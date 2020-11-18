@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoachEasy.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201111142420_InitialCreate")]
+    [Migration("20201118163914_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -339,11 +339,17 @@ namespace CoachEasy.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
+                    b.Property<string>("Experience")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
+                    b.Property<string>("Height")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -357,7 +363,6 @@ namespace CoachEasy.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("PictureId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PositionId")
@@ -369,8 +374,9 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("nvarchar(80)")
                         .HasMaxLength(80);
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -395,9 +401,7 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -407,6 +411,9 @@ namespace CoachEasy.Data.Migrations
 
                     b.Property<int>("Name")
                         .HasColumnType("int");
+
+                    b.Property<string>("Playstyle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -447,7 +454,7 @@ namespace CoachEasy.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("CoachEasy.Data.Models.Skill", b =>
+            modelBuilder.Entity("CoachEasy.Data.Models.Workout", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -462,6 +469,10 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -474,7 +485,6 @@ namespace CoachEasy.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("PictureId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PositionId")
@@ -624,9 +634,7 @@ namespace CoachEasy.Data.Migrations
                 {
                     b.HasOne("CoachEasy.Data.Models.Picture", "Picture")
                         .WithMany("Players")
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("PictureId");
 
                     b.HasOne("CoachEasy.Data.Models.Position", "Position")
                         .WithMany("Players")
@@ -635,16 +643,14 @@ namespace CoachEasy.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CoachEasy.Data.Models.Skill", b =>
+            modelBuilder.Entity("CoachEasy.Data.Models.Workout", b =>
                 {
                     b.HasOne("CoachEasy.Data.Models.Picture", "Picture")
                         .WithMany("Skills")
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("PictureId");
 
                     b.HasOne("CoachEasy.Data.Models.Position", "Position")
-                        .WithMany("Skills")
+                        .WithMany("Workouts")
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

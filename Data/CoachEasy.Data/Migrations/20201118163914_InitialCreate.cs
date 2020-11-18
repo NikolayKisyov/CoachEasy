@@ -119,7 +119,8 @@ namespace CoachEasy.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 200, nullable: false)
+                    Description = table.Column<string>(nullable: true),
+                    Playstyle = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,11 +291,12 @@ namespace CoachEasy.Data.Migrations
                     PositionId = table.Column<string>(nullable: false),
                     TeamName = table.Column<string>(maxLength: 80, nullable: false),
                     Championships = table.Column<int>(nullable: false),
-                    Height = table.Column<int>(nullable: false),
-                    Weight = table.Column<int>(nullable: false),
-                    Experience = table.Column<int>(nullable: false),
+                    Height = table.Column<string>(nullable: false),
+                    Weight = table.Column<string>(nullable: false),
+                    Experience = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
-                    PictureId = table.Column<string>(nullable: false)
+                    ImageUrl = table.Column<string>(nullable: false),
+                    PictureId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -326,7 +328,8 @@ namespace CoachEasy.Data.Migrations
                     Description = table.Column<string>(maxLength: 200, nullable: true),
                     PositionId = table.Column<string>(nullable: false),
                     VideoUrl = table.Column<string>(nullable: false),
-                    PictureId = table.Column<string>(nullable: false)
+                    ImageUrl = table.Column<string>(nullable: false),
+                    PictureId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

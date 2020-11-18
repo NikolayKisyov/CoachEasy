@@ -14,7 +14,7 @@
             this.Id = Guid.NewGuid().ToString();
             this.Players = new HashSet<Player>();
             this.Coaches = new HashSet<Coach>();
-            this.Skills = new HashSet<Skill>();
+            this.Skills = new HashSet<Workout>();
         }
 
         [Required]
@@ -24,6 +24,6 @@
 
         public virtual ICollection<Coach> Coaches { get; set; }
 
-        public virtual ICollection<Skill> Skills { get; set; }
+        public virtual ICollection<Workout> Skills { get; set; }
     }
 }

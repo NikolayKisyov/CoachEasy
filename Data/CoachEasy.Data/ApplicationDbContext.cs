@@ -32,7 +32,7 @@
 
         public DbSet<Picture> Pictures { get; set; }
 
-        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Workout> Skills { get; set; }
 
         public DbSet<ContactForm> ContactForms { get; set; }
 
