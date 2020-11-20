@@ -27,7 +27,7 @@
         public string PositionId { get; set; }
 
         [Required]
-        public Position Position { get; set; }
+        public virtual Position Position { get; set; }
 
         [Required]
         public string VideoUrl { get; set; }

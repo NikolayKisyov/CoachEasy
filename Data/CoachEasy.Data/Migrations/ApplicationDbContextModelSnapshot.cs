@@ -501,7 +501,7 @@ namespace CoachEasy.Data.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("Skills");
+                    b.ToTable("Workouts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

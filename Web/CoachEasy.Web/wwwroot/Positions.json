@@ -1,0 +1,27 @@
+[
+  {
+    "positionname": "PointGuard",
+    "description": "The point guard (PG), also called the one or the point, is one of the five positions in a regulation basketball game. A point guard has perhaps the most specialized role of any position. Point guards are expected to run the team's offense by controlling the ball and making sure that it gets to the right player at the right time. Above all, the point guard must understand and accept their coach's game plan.",
+    "playstyle": "A point guard, like other player positions in basketball, specializes in certain skills. Their primary job is to facilitate scoring opportunities for their team, or sometimes for themselves. (Ex-coach) Lee Rose has described a point guard as a coach on the floor, who can handle and distribute the ball to teammates. This involves setting up plays on the court, getting the ball to the teammate in the best position to score, and controlling the tempo of the game."
+  },
+   {
+    "positionname": "ShootingGuard",
+    "description": "The shooting guard (SG), also known as the two, is one of the five positions in a regulation basketball game. A shooting guard's main objective is to score points for their team and steal the ball on defense. A shooting guard is also described as a player whose primary role is to score points. As the name suggests, most shooting guards are good long-range shooters.",
+    "playstyle": "Shooting guards should be good ball handlers and be able to pass reasonably well, though passing is not their main priority. Since good shooting guards may attract double-teams, they are frequently the team's back-up ball handlers to the point guard and typically get a fair number of assists. Shooting guards must be able to score in various ways, especially late in a close game when defenses are tighter. They need to have a good free throw percentage also."
+  },
+   {
+    "positionname": "SmallForward",
+    "description": "The small forward (SF), also known as the three, is one of the five positions in a regulation basketball game. Small forwards are typically shorter, quicker, and leaner than power forwards and centers but taller, larger, and stronger than either of the guard positions. The small forward is considered to be perhaps the most versatile of the five positions. Small forwards are responsible for scoring points and defending, and often are secondary rebounders behind the power forward and center.",
+    "playstyle": "The styles with which small forwards score vary widely. Some are very accurate shooters, and some prefer to initiate physical contact with opposing players, while others are primarily slashers who also possess jump shots. In some cases, small forwards position on the baseline; in other cases, they operate as off-ball specialists. The defensive specialists among them are notably versatile, often being able to guard multiple positions using their size, speed, and strength."
+  },
+   {
+    "positionname": "PowerForward",
+    "description": "The power forward (PF), also known as the four, is one of the five positions in a regulation basketball game. Power forwards play a role similar to that of center. They typically play offensively with their backs towards the basket and position themselves defensively under the basket in a zone defense or against the opposing power forward in man-to-man defense.",
+    "playstyle": "The power forward position entails a variety of responsibilities, one of which is rebounding. Many power forwards are noted for their mid-range jump-shot, and several players have become very accurate from 12 to 18 feet (3.7 to 5.5 m). Earlier, these skills were more typically exhibited in the European style of play. Some power forwards, known as stretch fours, have since extended their shooting range to three-point field goals."
+  },
+   {
+    "positionname": "Center",
+    "description": "The center (C), also known as the five, or the big man, is one of the five positions in a basketball game. The center is normally the tallest player on the team, and often has a great deal of strength and body mass as well. In the NBA, the center is usually 6 feet 10 inches (2.08 m) or taller. They traditionally have played close to the basket in the low post.",
+    "playstyle": "Centers are valued for their ability to protect their own goal while scoring with high efficiency. The center is responsible for making close-up baskets on offense and stopping baskets on defense. They are also responsible for the team's rebounds and need to be fast and grab balls bouncing off the rim or backboard when a teammate misses a shot."
+  }
+]

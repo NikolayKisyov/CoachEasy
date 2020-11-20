@@ -32,9 +32,6 @@
 
             foreach (var p in playersJson)
             {
-                string imageUrl = string.Empty;
-                imageUrl = GetPositionImage(p, imageUrl);
-
                 var playerPosition = new Position { Name = (PositionName)Enum.Parse(typeof(PositionName), p.Position) };
 
                 var player = new Player
@@ -48,9 +45,9 @@
                     Height = p.Height,
                     Weight = p.Weight,
                     Experience = p.Experience,
-                    ImageUrl = imageUrl,
+                    ImageUrl = p.ImageUrl,
                 };
-
+                playerPosition.Players.Add(player);
                 playersList.Add(player);
             }
 
@@ -58,30 +55,5 @@
             await dbContext.SaveChangesAsync();
         }
 
-        private static string GetPositionImage(PlayerJsonDTO p, string imageUrl)
-        {
-            if (p.Name == "Stephen Curry")
-            {
-                imageUrl = @"https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png";
-            }
-            else if (p.Name == "LeBron James")
-            {
-                imageUrl = @"https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png";
-            }
-            else if (p.Name == "Klay Thompson")
-            {
-                imageUrl = @"https://cdn.nba.com/headshots/nba/latest/1040x760/202691.png";
-            }
-            else if (p.Name == "Anthony Davis")
-            {
-                imageUrl = @"https://cdn.nba.com/headshots/nba/latest/1040x760/203076.png";
-            }
-            else if (p.Name == "Marc Gasol")
-            {
-                imageUrl = @"https://cdn.nba.com/headshots/nba/latest/1040x760/201188.png";
-            }
-
-            return imageUrl;
-        }
     }
 }

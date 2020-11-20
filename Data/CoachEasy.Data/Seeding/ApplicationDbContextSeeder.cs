@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using CoachEasy.Data.Seeding.PositionsSeeding;
+    using CoachEasy.Data.Seeding.WorkoutsSeeding;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -28,6 +30,8 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new PlayerSeeder(),
+                              new PositionSeeder(),
+                              new WorkoutSeeder(),
                           };
 
             foreach (var seeder in seeders)

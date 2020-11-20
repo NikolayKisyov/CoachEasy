@@ -316,7 +316,7 @@ namespace CoachEasy.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Skills",
+                name: "Workouts",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -333,15 +333,15 @@ namespace CoachEasy.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Skills", x => x.Id);
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Skills_Pictures_PictureId",
+                        name: "FK_Workouts_Pictures_PictureId",
                         column: x => x.PictureId,
                         principalTable: "Pictures",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Skills_Positions_PositionId",
+                        name: "FK_Workouts_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
                         principalColumn: "Id",
@@ -483,18 +483,18 @@ namespace CoachEasy.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skills_IsDeleted",
-                table: "Skills",
+                name: "IX_Workouts_IsDeleted",
+                table: "Workouts",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skills_PictureId",
-                table: "Skills",
+                name: "IX_Workouts_PictureId",
+                table: "Workouts",
                 column: "PictureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skills_PositionId",
-                table: "Skills",
+                name: "IX_Workouts_PositionId",
+                table: "Workouts",
                 column: "PositionId");
         }
 
@@ -528,7 +528,7 @@ namespace CoachEasy.Data.Migrations
                 name: "Settings");
 
             migrationBuilder.DropTable(
-                name: "Skills");
+                name: "Workouts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

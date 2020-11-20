@@ -45,4 +45,10 @@
     <ProjectReference Include="..\CoachEasy.Web.Infrastructure\CoachEasy.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\CoachEasy.Web.ViewModels\CoachEasy.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Workouts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

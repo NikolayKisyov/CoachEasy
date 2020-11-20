@@ -7,7 +7,8 @@
     "height": "1.91m",
     "weight": "84kg",
     "experience": "10 years",
-    "description": "\"Wardell Stephen \"Steph\" Curry (born March 14, 1988) is an American professional basketball player for the Golden State Warriors of the National Basketball Association (NBA). Many analysts and players have called him the greatest shooter in NBA history.\""
+    "description": "\"Wardell Stephen \"Steph\" Curry (born March 14, 1988) is an American professional basketball player for the Golden State Warriors of the National Basketball Association (NBA). Many analysts and players have called him the greatest shooter in NBA history.\"",
+    "imageurl": "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png"
   },
   {
     "name": "LeBron James",
@@ -17,7 +18,8 @@
     "height": "2.06m",
     "weight": "113kg",
     "experience": "16 years",
-    "description": "LeBron Raymone James Sr. (born December 30, 1984) is an American professional basketball player for the Los Angeles Lakers of the National Basketball Association (NBA). Widely considered one of the greatest NBA players, James is frequently compared to Michael Jordan in debates over the greatest basketball player of all time."
+    "description": "LeBron Raymone James Sr. (born December 30, 1984) is an American professional basketball player for the Los Angeles Lakers of the National Basketball Association (NBA). Widely considered one of the greatest NBA players, James is frequently compared to Michael Jordan in debates over the greatest basketball player of all time.",
+    "imageurl": "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png"
   },
   {
     "name": "Klay Thompson",
@@ -27,7 +29,8 @@
     "height": "1.98m",
     "weight": "98kg",
     "experience": "8 years",
-    "description": "Klay Alexander Thompson (born February 8, 1990) is an American professional basketball player for the Golden State Warriors of the National Basketball Association (NBA). He is credited as one of the greatest shooters in NBA history."
+    "description": "Klay Alexander Thompson (born February 8, 1990) is an American professional basketball player for the Golden State Warriors of the National Basketball Association (NBA). He is credited as one of the greatest shooters in NBA history.",
+    "imageurl": "https://cdn.nba.com/headshots/nba/latest/1040x760/202691.png"
   },
   {
     "name": "Anthony Davis",
@@ -37,7 +40,8 @@
     "height": "2.08m",
     "weight": "115kg",
     "experience": "7 years",
-    "description": "Anthony Marshon Davis Jr. (born March 11, 1993) is an American professional basketball player for the Los Angeles Lakers of the National Basketball Association (NBA). He plays the power forward and center positions. Davis was the first overall pick in the 2012 NBA draft."
+    "description": "Anthony Marshon Davis Jr. (born March 11, 1993) is an American professional basketball player for the Los Angeles Lakers of the National Basketball Association (NBA). He plays the power forward and center positions. Davis was the first overall pick in the 2012 NBA draft.",
+    "imageurl": "https://cdn.nba.com/headshots/nba/latest/1040x760/203076.png"
   },
   {
     "name": "Marc Gasol",
@@ -47,6 +51,7 @@
     "height": "2.11m",
     "weight": "116kg",
     "experience": "11 years",
-    "description": "Marc Gasol Sáez (born 29 January 1985) is a Spanish professional basketball player for the Toronto Raptors of the National Basketball Association (NBA). A center, he was drafted 48th overall by the Los Angeles Lakers in the 2007 NBA draft. After having his rights traded to the Memphis Grizzlies in February 2008 in a deal that sent his older brother Pau to the Lakers, he signed with the team and remained with the franchise until being traded to Toronto in 2019, where he won his first NBA championship."
+    "description": "Marc Gasol Sáez (born 29 January 1985) is a Spanish professional basketball player for the Toronto Raptors of the National Basketball Association (NBA). A center, he was drafted 48th overall by the Los Angeles Lakers in the 2007 NBA draft. After having his rights traded to the Memphis Grizzlies in February 2008 in a deal that sent his older brother Pau to the Lakers, he signed with the team and remained with the franchise until being traded to Toronto in 2019, where he won his first NBA championship.",
+    "imageurl": "https://cdn.nba.com/headshots/nba/latest/1040x760/201188.png"
   }
 ]
