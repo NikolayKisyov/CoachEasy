@@ -9,6 +9,8 @@
 
     public class PlayerViewModel
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public PositionName PositionName { get; set; }

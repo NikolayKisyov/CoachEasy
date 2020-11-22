@@ -1,0 +1,46 @@
+﻿@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "Home Page";
+}
+@using CoachEasy.Data.Models.Enums
+@model ICollection<CoachEasy.Web.Controllers.PlayerViewModel>
+
+<div class="text-center">
+    <h1 class="display-3">COACH EASY</h1>
+    <div>
+        <span class="display-4 text-break text-">
+            Choose your role
+        </span>
+    </div>
+    <div class="d-inline-flex justify-content-center">
+        @foreach (var player in Model)
+        {
+            <div class="card col-6 col-lg-3 game-card image-resizer">
+                <img src="@player.ImageUrl"
+                     class="card-img-top img-fluid card-image">
+                <div class="card-body">
+                    <h5 class="card-title text-center" data-toggle="tooltip" data-placement="bottom"
+                        title="Description:<br>Description">
+                    </h5>
+                    <h2 class="">@player.Name</h2>
+                    <h5>Position:</h5>
+                    <ul class="list-group list-group-flush">
+                       <a asp-controller="Positions" asp-action="Position" asp-route-id="@player.Id" class="btn-light">@Html.DisplayFor(model => player.PositionName)</a>
+                        <li class="list-group-item">
+                            Team Name: <br>
+                            <div class="attack-stat">@player.TeamName</div><br>
+                            Experience: <br>
+                            <div class="health-stat">@player.Experience</div><br>
+                            Championships: <br>
+                            <div class="health-stat">@player.Championships</div>
+                            Height: <br>
+                            <div class="health-stat">@player.Height</div><br>
+                            Weight: <br>
+                            <div class="health-stat">@player.Weight</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

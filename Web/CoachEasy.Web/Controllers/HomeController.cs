@@ -13,47 +13,13 @@
 
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext db;
-        private readonly IDeletableEntityRepository<Position> positions;
-
-        public HomeController(ApplicationDbContext db, IDeletableEntityRepository<Position> positions)
+        public HomeController()
         {
-            this.db = db;
-            this.positions = positions;
         }
 
         public IActionResult Index()
         {
-            var viewModel = this.db.Players.Select(x => new PlayerViewModel
-            {
-                Name = x.Name,
-                PositionName = x.Position.Name,
-                TeamName = x.TeamName,
-                Championships = x.Championships,
-                Height = x.Height,
-                Weight = x.Weight,
-                Experience = x.Experience,
-                ImageUrl = x.ImageUrl,
-            }).ToList();
-
-            return this.View(@"/Views/Home/IndexLoggedIn.cshtml", viewModel);
-        }
-
-        public IActionResult Position()
-        {
-            var viewModel = this.db.Players.Where(x => x.Name == "Stephen Curry").Select(x => new PlayerViewModel
-            {
-                Name = x.Name,
-                PositionName = x.Position.Name,
-                TeamName = x.TeamName,
-                Championships = x.Championships,
-                Height = x.Height,
-                Weight = x.Weight,
-                Experience = x.Experience,
-                ImageUrl = x.ImageUrl,
-            }).First();
-
-            return this.View(@"/Views/Position/Position.cshtml", viewModel);
+            return this.View();
         }
 
         public IActionResult Privacy()
@@ -69,4 +35,3 @@
         }
     }
 }
-
