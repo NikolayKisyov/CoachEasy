@@ -14,6 +14,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.Clients = new HashSet<CoachClients>();
+            this.CoachWorkouts = new HashSet<Workout>();
         }
 
         [Required]
@@ -39,6 +40,7 @@
 
         public virtual ICollection<CoachClients> Clients { get; set; }
 
+        public virtual ICollection<Workout> CoachWorkouts { get; set; }
         // TODO: Implement Courses in the future
     }
 }

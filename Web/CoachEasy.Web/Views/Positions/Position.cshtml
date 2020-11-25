@@ -7,8 +7,8 @@
 
 
 <div style="display: inline-flex">
-    <div class="p-2 bg-danger">@Model.Description</div>
-    <div class="p-2 bg-dark">
+    <div class="p-2">@Model.Description</div>
+    <div class="p-2">
         <img src="@Model.PlayerImageUrl" style="max-height: 250px; margin-bottom:-8px;">
     </div>
     <div class="p-2">@Model.Playstyle</div>
@@ -16,18 +16,18 @@
 <hr />
 
 @*<div class="card-group">
-    @foreach (var workout in Model.Workouts)
-    {
-        <div class="card d-inline-flex" style="width: 18rem;">
-            <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@workout.Name</h5>
-                <p class="card-text">@workout.Description</p>
-                <a href="#" class="btn btn-primary">Watch Workout</a>
+        @foreach (var workout in Model.Workouts)
+        {
+            <div class="card d-inline-flex" style="width: 18rem;">
+                <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@workout.Name</h5>
+                    <p class="card-text">@workout.Description</p>
+                    <a href="#" class="btn btn-primary">Watch Workout</a>
+                </div>
             </div>
-        </div>
-    }
-</div>*@
+        }
+    </div>*@
 
 <div class="card-deck">
     @foreach (var item in Model.Workouts)
@@ -42,3 +42,8 @@
         </div>
     }
 </div>
+
+@foreach (var workout in Model.Workouts)
+{
+<iframe width="956" height="538" src="@workout.VideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+}

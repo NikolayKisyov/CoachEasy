@@ -12,18 +12,15 @@
         public Picture()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Players = new HashSet<Player>();
             this.Coaches = new HashSet<Coach>();
-            this.Skills = new HashSet<Workout>();
+            this.Workouts = new HashSet<Workout>();
         }
 
         [Required]
         public string Url { get; set; }
 
-        public virtual ICollection<Player> Players { get; set; }
-
         public virtual ICollection<Coach> Coaches { get; set; }
 
-        public virtual ICollection<Workout> Skills { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
     }
 }

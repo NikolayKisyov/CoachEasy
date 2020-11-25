@@ -48,9 +48,5 @@
 
         [Required]
         public string ImageUrl { get; set; }
-
-        public string PictureId { get; set; }
-
-        public virtual Picture Picture { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace CoachEasy.Web
 {
     using System.Reflection;
-
+    using CloudinaryDotNet;
     using CoachEasy.Data;
     using CoachEasy.Data.Common;
     using CoachEasy.Data.Common.Repositories;
@@ -66,6 +66,15 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IPlayersService, PlayersService>();
             services.AddTransient<IPositionsService, PositionsService>();
+
+            Account cloudinaryCredentials = new Account(
+                                   this.configuration["Cloudinary:CloudName"],
+                                   this.configuration["Cloudinary:ApiKey"],
+                                   this.configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(cloudinaryCredentials);
+
+            services.AddSingleton(cloudinary);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

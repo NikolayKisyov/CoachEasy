@@ -5,10 +5,24 @@
 }
 
 .text-colorise{
-    text-decoration-color:mediumpurple;
+    text-decoration-color: mediumpurple;
 }
 
 .workout-size {
     height: 500px; 
     width: 1200px;
+}
+
+.text-inside{
+    color:ghostwhite;
+    font-style: initial;
+    justify-content: center;
+    width: 50%;
+}
+
+.box {
+    background: darkorange;
+    width: 55%;
+    margin: auto;
+    padding: 18px;
 }
