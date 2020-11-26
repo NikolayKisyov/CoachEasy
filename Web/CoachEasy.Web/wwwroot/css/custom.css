@@ -26,3 +26,7 @@
     margin: auto;
     padding: 18px;
 }
+
+.cursor{
+    cursor:pointer;
+}

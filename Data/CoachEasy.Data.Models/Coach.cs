@@ -32,6 +32,13 @@
         public string Email { get; set; }
 
         [Required]
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+
+        [Required]
+        public virtual ApplicationUser User { get; set; }
+
+        [Required]
         [ForeignKey(nameof(Picture))]
         public string PictureId { get; set; }
 

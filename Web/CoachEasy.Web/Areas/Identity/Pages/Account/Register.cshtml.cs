@@ -14,6 +14,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using CoachEasy.Services.Data.Coach;
+using CoachEasy.Web.ViewModels;
+using CoachEasy.Data.Models.Enums;
+using CoachEasy.Common;
 
 namespace CoachEasy.Web.Areas.Identity.Pages.Account
 {
@@ -24,17 +29,20 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ICoachService _coachService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ICoachService coachService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _coachService = coachService;
         }
 
         [BindProperty]
@@ -67,9 +75,11 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
             [Display(Name = "Full Name")]
             public string FullName { get; set; }
 
-            [Range(1,30)]
+            [Range(1, 30)]
+            [Display(Name = "Coach Experience")]
             public int Experience { get; set; }
 
+            [Display(Name = "Do you have any basketball experience?")]
             public bool HasExperience { get; set; }
 
             [StringLength(100, ErrorMessage = "Description must be atleast {2} and at max {1} characters long.", MinimumLength = 30)]
@@ -77,9 +87,13 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
 
             public string Phone { get; set; }
 
-            public string PositionPlayed { get; set; }
+            [Display(Name = "Choose the role you play")]
+            public PositionName PositionPlayed { get; set; }
 
             public string SelectedRole { get; set; }
+
+            [Display(Name = "Upload your photo")]
+            public IFormFile UserImage { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -94,7 +108,8 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email};
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+               
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
