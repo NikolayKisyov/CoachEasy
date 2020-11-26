@@ -26,5 +26,6 @@
         public string Phone { get; set; }
 
         public IFormFile UserImage { get; set; }
+
     }
 }

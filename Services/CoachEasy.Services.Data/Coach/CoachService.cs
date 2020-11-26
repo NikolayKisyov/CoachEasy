@@ -20,15 +20,13 @@
 
         public CoachService(
             IDeletableEntityRepository<Coach> coachRepository,
-            IPictureService pictureService,
             ICloudinaryService cloudinaryService)
         {
             this.coachRepository = coachRepository;
-            this.pictureService = pictureService;
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<bool> CreateCoachAsync(CreateCoachInputModel input)
+        public async Task<bool> CreateCoachAsync(CreateCoachInputModel input, ApplicationUser user)
         {
             string folderName = "coach_images";
             var inputPicture = input.UserImage;
@@ -42,6 +40,8 @@
                 Phone = input.Phone,
                 Experience = input.Experience,
                 Picture = new Picture { Url = pictureUrl },
+                User = user,
+                UserId = user.Id,
             };
 
             if (coach != null && coach.Experience > 0)

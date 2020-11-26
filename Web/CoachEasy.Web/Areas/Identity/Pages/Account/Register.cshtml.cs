@@ -109,8 +109,25 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
-               
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                if (Input.SelectedRole == "Coach")
+                {
+                    var coachInputModel = new CreateCoachInputModel
+                    {
+                        FullName = Input.FullName,
+                        Email = Input.Email,
+                        Description = Input.Description,
+                        Experience = Input.Experience,
+                        Phone = Input.Phone,
+                        UserImage = Input.UserImage
+                    };
+
+                    var coachUser = _userManager.FindByEmailAsync(coachInputModel.Email).Result;
+                    await _coachService.CreateCoachAsync(coachInputModel, coachUser);
+                    await _userManager.AddToRoleAsync(user, GlobalConstants.CoachRoleName);
+                }
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

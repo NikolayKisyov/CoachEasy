@@ -61,7 +61,7 @@
                 <input asp-for="Input.Description" class="form-control" />
                 <span asp-validation-for="Input.Description" class="text-danger"></span>
             </div>
-            <div class="form-group client">
+            <div class="form-group client" style="display:none">
                 <label asp-for="Input.PositionPlayed"></label>
                 <select asp-for="Input.PositionPlayed" form-control" asp-items="@Html.GetEnumSelectList<PositionName>()"></select>
                 <span asp-validation-for="Input.PositionPlayed" class="text-danger"></span>

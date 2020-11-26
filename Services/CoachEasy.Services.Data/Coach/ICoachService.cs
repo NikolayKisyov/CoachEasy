@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-
+    using CoachEasy.Data.Models;
     using CoachEasy.Web.ViewModels;
 
     public interface ICoachService
     {
-        Task<bool> CreateCoachAsync(CreateCoachInputModel input);
+        Task<bool> CreateCoachAsync(CreateCoachInputModel input, ApplicationUser user);
     }
 }
