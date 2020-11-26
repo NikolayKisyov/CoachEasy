@@ -13,6 +13,14 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Input.SelectedRole">Choose register type</label>
+                <select asp-for="Input.SelectedRole" class="form-control" id="typeUser" onchange="ChangeRegisterProperties()">
+                    <option value="Coach">Coach</option>
+                    <option value="Client">Client</option>
+                </select>
+                <span class="text-danger" asp-validation-for="Input.SelectedRole"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
@@ -27,10 +35,35 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Input.FullName"></label>
+                <input asp-for="Input.FullName" class="form-control" />
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group coach">
+                <label asp-for="Input.Experience"></label>
+                <input asp-for="Input.Experience" class="form-control" />
+                <span asp-validation-for="Input.Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group client" style="display:none">
+                <label asp-for="Input.HasExperience"></label>
+                <input asp-for="Input.HasExperience" class="form-control" />
+                <span asp-validation-for="Input.HasExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group coach">
+                <label asp-for="Input.Description"></label>
+                <input asp-for="Input.Description" class="form-control" />
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group client">
+                <label asp-for="Input.PositionPlayed"></label>
+                <input asp-for="Input.PositionPlayed" class="form-control" />
+                <span asp-validation-for="Input.PositionPlayed" class="text-danger"></span>
+            </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    @*<div class="col-md-6 col-md-offset-2">
         <section>
             <h4>Use another service to register.</h4>
             <hr />
@@ -60,7 +93,7 @@
             }
         </section>
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
