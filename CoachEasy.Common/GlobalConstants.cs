@@ -12,6 +12,8 @@
 
         public const string InvalidOperationExceptionWhileCreatingCoach = "Exception happened in CoachService while creating coach in IDeletableEntityRepository<Coach>";
 
+        public const string InvalidOperationExceptionWhileCreatingClient = "Exception happened in ClientService while creating client in IDeletableEntityRepository<Client>";
+
         public const string InvalidOperationExceptionInPictureService = "Exception happened in PictureService while adding the Picture to IDeletableEntityRepository<Picture>";
     }
 }

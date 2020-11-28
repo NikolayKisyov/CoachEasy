@@ -15,7 +15,6 @@
     public class CoachService : ICoachService
     {
         private readonly IDeletableEntityRepository<Coach> coachRepository;
-        private readonly IPictureService pictureService;
         private readonly ICloudinaryService cloudinaryService;
 
         public CoachService(

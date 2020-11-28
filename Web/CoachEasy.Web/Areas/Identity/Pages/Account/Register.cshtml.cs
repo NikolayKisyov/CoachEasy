@@ -19,6 +19,7 @@ using CoachEasy.Services.Data.Coach;
 using CoachEasy.Web.ViewModels;
 using CoachEasy.Data.Models.Enums;
 using CoachEasy.Common;
+using CoachEasy.Services.Data.Client;
 
 namespace CoachEasy.Web.Areas.Identity.Pages.Account
 {
@@ -30,19 +31,22 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ICoachService _coachService;
+        private readonly IClientService _clientService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICoachService coachService)
+            ICoachService coachService,
+            IClientService clientService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _coachService = coachService;
+            _clientService = clientService;
         }
 
         [BindProperty]
@@ -75,9 +79,9 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
             [Display(Name = "Full Name")]
             public string FullName { get; set; }
 
-            [Range(1, 30)]
+            [Range(1,30)]
             [Display(Name = "Coach Experience")]
-            public int Experience { get; set; }
+            public int? Experience { get; set; }
 
             [Display(Name = "Do you have any basketball experience?")]
             public bool HasExperience { get; set; }
@@ -118,14 +122,29 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
                         FullName = Input.FullName,
                         Email = Input.Email,
                         Description = Input.Description,
-                        Experience = Input.Experience,
+                        Experience = Input.Experience.HasValue ? Input.Experience.Value : 1,
                         Phone = Input.Phone,
-                        UserImage = Input.UserImage
+                        UserImage = Input.UserImage,
                     };
 
                     var coachUser = _userManager.FindByEmailAsync(coachInputModel.Email).Result;
                     await _coachService.CreateCoachAsync(coachInputModel, coachUser);
                     await _userManager.AddToRoleAsync(user, GlobalConstants.CoachRoleName);
+                }
+                else
+                {
+                    var clientInputModel = new CreateClientInputModel
+                    {
+                        FullName = Input.FullName,
+                        Email = Input.Email,
+                        PositionPlayed = Input.PositionPlayed,
+                        HasExperience = Input.HasExperience,
+                        Phone = Input.Phone,
+                    };
+
+                    var clientUser = _userManager.FindByEmailAsync(clientInputModel.Email).Result;
+                    await _clientService.CreateClientAsync(clientInputModel, clientUser);
+                    await _userManager.AddToRoleAsync(user, GlobalConstants.ClientRoleName);
                 }
 
                 if (result.Succeeded)

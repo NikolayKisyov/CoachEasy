@@ -9,6 +9,7 @@
     using CoachEasy.Data.Repositories;
     using CoachEasy.Data.Seeding;
     using CoachEasy.Services.Data;
+    using CoachEasy.Services.Data.Client;
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Data.Picture;
@@ -72,6 +73,7 @@
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<IPictureService, PictureService>();
             services.AddTransient<ICoachService, CoachService>();
+            services.AddTransient<IClientService, ClientService>();
 
             Account cloudinaryCredentials = new Account(
                                    this.configuration["Cloudinary:CloudName"],
