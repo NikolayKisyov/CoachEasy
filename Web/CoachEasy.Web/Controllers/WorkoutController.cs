@@ -48,11 +48,11 @@
             return this.Redirect("/");
         }
 
-        //[HttpGet]
-        //public IActionResult All()
-        //{
-        //    var viewModel = this.workoutsService.GetAll<WorkoutViewModel>();
-        //    return this.View(viewModel);
-        //}
+        [HttpGet]
+        public IActionResult All()
+        {
+            var viewModel = this.workoutsService.GetAll<WorkoutViewModel>();
+            return this.View(viewModel);
+        }
     }
 }

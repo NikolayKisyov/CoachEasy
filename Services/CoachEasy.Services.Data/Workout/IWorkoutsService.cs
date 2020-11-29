@@ -10,7 +10,7 @@
 
     public interface IWorkoutsService
     {
-        //IEnumerable<T> GetAll<T>();
+        ICollection<T> GetAll<T>();
 
         Task CreateWorkoutAsync(CreateWorkoutInputModel input, string userId);
     }

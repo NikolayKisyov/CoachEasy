@@ -45,23 +45,23 @@
                 Description = input.Description,
                 VideoUrl = input.VideoUrl,
                 PositionId = position.Id,
-                Position = position,
                 Picture = new Picture { Url = pictureUrl },
                 CoachId = coach.Id,
-                AddedByCoach = coach,
             };
+
+            coach.CoachWorkouts.Add(workout);
 
             await this.workoutsRepository.AddAsync(workout);
             await this.workoutsRepository.SaveChangesAsync();
         }
 
-        //public IEnumerable<T> GetAll<T>()
-        //{
-        //    return this.workoutsRepository
-        //        .AllAsNoTracking()
-        //        .OrderByDescending(x => x.CreatedOn)
-        //        .To<T>()
-        //        .ToList();
-        //}
+        public ICollection<T> GetAll<T>()
+        {
+            return this.workoutsRepository
+                .AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .To<T>()
+                .ToList();
+        }
     }
 }

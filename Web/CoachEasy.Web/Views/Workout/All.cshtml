@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WorkoutViewModel>
+﻿@model ICollection<WorkoutViewModel>
 @using CoachEasy.Web.ViewModels.Workouts
 @using CoachEasy.Common
 @{
@@ -6,10 +6,10 @@
 }
 
 
-<div class="card-deck">
+<div class="d-inline-flex">
     @foreach (var workout in Model)
     {
-        <div class="card col-3 col-lg-6 game-card">
+        <div class="card col-6 col-lg-6 game-card">
             <img class="card-img-top" src="@workout.PictureUrl" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@workout.Name</h5>
