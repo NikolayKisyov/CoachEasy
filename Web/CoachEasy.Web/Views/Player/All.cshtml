@@ -25,7 +25,7 @@
                     <h2 class="">@player.Name</h2>
                     <h5>Position:</h5>
                     <ul class="list-group list-group-flush">
-                       <a asp-controller="Positions" asp-action="Position" asp-route-id="@player.Id" class="btn btn-outline-primary" role="button">@Html.DisplayFor(model => player.PositionName)</a>
+                       <a asp-controller="Position" asp-action="Position" asp-route-id="@player.Id" class="btn btn-outline-primary" role="button">@Html.DisplayFor(model => player.PositionName)</a>
                         <li class="list-group-item">
                             Team Name: <br>
                             <div class="attack-stat">@player.TeamName</div><br>

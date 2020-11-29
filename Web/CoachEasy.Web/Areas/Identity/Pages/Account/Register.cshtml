@@ -19,7 +19,7 @@
                     <option value="Coach">Coach</option>
                     <option value="Client">Client</option>
                 </select>
-                <span class="text-danger" asp-validation-for="Input.SelectedRole"></span>
+                <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
@@ -58,12 +58,12 @@
             </div>
             <div class="form-group coach">
                 <label asp-for="Input.Description"></label>
-                <input asp-for="Input.Description" class="form-control" />
+                <textarea asp-for="Input.Description" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Input.Description" class="text-danger"></span>
             </div>
             <div class="form-group client" style="display:none">
                 <label asp-for="Input.PositionPlayed"></label>
-                <select asp-for="Input.PositionPlayed" form-control" asp-items="@Html.GetEnumSelectList<PositionName>()"></select>
+                <select asp-for="Input.PositionPlayed" class="form-control" asp-items="@Html.GetEnumSelectList<PositionName>()"></select>
                 <span asp-validation-for="Input.PositionPlayed" class="text-danger"></span>
             </div>
             <div class="form-group coach">

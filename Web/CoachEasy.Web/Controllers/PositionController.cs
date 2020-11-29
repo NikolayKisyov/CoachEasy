@@ -8,11 +8,11 @@
     using CoachEasy.Services.Data;
     using Microsoft.AspNetCore.Mvc;
 
-    public class PositionsController : BaseController
+    public class PositionController : BaseController
     {
         private readonly IPositionsService positionsService;
 
-        public PositionsController(IPositionsService positionsService)
+        public PositionController(IPositionsService positionsService)
         {
             this.positionsService = positionsService;
         }

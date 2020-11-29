@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
-
+    using CoachEasy.Services.Mapping;
     using Microsoft.AspNetCore.Http;
 
-    public class CreateCoachInputModel
+    public class CreateCoachInputModel 
     {
         [Required]
         [StringLength(80, ErrorMessage = "Full name must be atleast {2} and at max {1} characters long.", MinimumLength = 6)]
