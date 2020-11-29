@@ -5,7 +5,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface IPictureService
+    public interface IPicturesService
     {
         Task<string> AddPictureAsync(string url);
     }

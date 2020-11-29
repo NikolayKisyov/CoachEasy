@@ -7,7 +7,7 @@
     using CoachEasy.Data.Models;
     using CoachEasy.Web.ViewModels;
 
-    public interface ICoachService
+    public interface ICoachesService
     {
         Task<bool> CreateCoachAsync(CreateCoachInputModel input, ApplicationUser user);
     }

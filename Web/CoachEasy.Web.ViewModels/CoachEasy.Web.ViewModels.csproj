@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CoachEasy.Common\CoachEasy.Common.csproj" />
     <ProjectReference Include="..\..\Data\CoachEasy.Data.Models\CoachEasy.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\CoachEasy.Services.Mapping\CoachEasy.Services.Mapping.csproj" />
   </ItemGroup>

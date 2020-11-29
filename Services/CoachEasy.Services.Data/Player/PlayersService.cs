@@ -8,6 +8,7 @@
 
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
+    using CoachEasy.Services.Mapping;
     using CoachEasy.Web.Controllers;
     using Microsoft.EntityFrameworkCore;
 
@@ -20,22 +21,12 @@
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<PlayerViewModel>> GetAllPlayersAsync()
+        public async Task<IEnumerable<T>> GetAllPlayersAsync<T>()
         {
             var players = await this.repository
                 .AllAsNoTracking()
-                .Select(x => new PlayerViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    PositionName = x.Position.Name,
-                    TeamName = x.TeamName,
-                    Championships = x.Championships,
-                    Height = x.Height,
-                    Weight = x.Weight,
-                    Experience = x.Experience,
-                    ImageUrl = x.ImageUrl,
-                }).ToListAsync();
+                .To<T>()
+                .ToListAsync();
 
             return players;
         }

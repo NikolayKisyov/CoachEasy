@@ -8,7 +8,7 @@
     using CoachEasy.Data.Models;
     using CoachEasy.Web.ViewModels;
 
-    public interface IClientService
+    public interface IClientsService
     {
         Task<bool> CreateClientAsync(CreateClientInputModel input, ApplicationUser user);
     }

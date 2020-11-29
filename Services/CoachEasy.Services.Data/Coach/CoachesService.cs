@@ -12,12 +12,12 @@
     using CoachEasy.Services.Data.Picture;
     using CoachEasy.Web.ViewModels;
 
-    public class CoachService : ICoachService
+    public class CoachesService : ICoachesService
     {
         private readonly IDeletableEntityRepository<Coach> coachRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public CoachService(
+        public CoachesService(
             IDeletableEntityRepository<Coach> coachRepository,
             ICloudinaryService cloudinaryService)
         {

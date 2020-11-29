@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WorkoutViewModel>
+@using CoachEasy.Web.ViewModels.Workouts
+@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "All Workouts";
+}
+
+
+<div class="card-deck">
+    @foreach (var workout in Model)
+    {
+        <div class="card col-3 col-lg-6 game-card">
+            <img class="card-img-top" src="@workout.PictureUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@workout.Name</h5>
+                <p class="card-text">@workout.Description</p>
+            </div>
+            <a href="#" class="btn btn-primary">Watch Workout</a>
+        </div>
+    }
+</div>

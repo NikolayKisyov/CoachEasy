@@ -9,11 +9,11 @@
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
 
-    public class PictureService : IPictureService
+    public class PicturesService : IPicturesService
     {
         private readonly IDeletableEntityRepository<Picture> pictures;
 
-        public PictureService(IDeletableEntityRepository<Picture> pictures)
+        public PicturesService(IDeletableEntityRepository<Picture> pictures)
         {
             this.pictures = pictures;
         }

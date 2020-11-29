@@ -4,17 +4,20 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
+
+    using CoachEasy.Common;
     using CoachEasy.Data.Models.Enums;
     using Microsoft.AspNetCore.Http;
 
     public class CreateWorkoutInputModel
     {
         [Required]
-        [Display(Name="Workout name")]
+        [Display(Name = "Workout name")]
         [MaxLength(50)]
         public string Name { get; set; }
 
         [MaxLength(200)]
+        [Required(ErrorMessage = GlobalConstants.DescriptionErrorMessage)]
         public string Description { get; set; }
 
         [Required]
@@ -27,7 +30,6 @@
 
         [Required]
         [Display(Name = "Workout picture")]
-        public IFormFile Picture { get; set; }
-
+        public IFormFile Image { get; set; }
     }
 }

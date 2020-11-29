@@ -30,16 +30,16 @@ namespace CoachEasy.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ICoachService _coachService;
-        private readonly IClientService _clientService;
+        private readonly ICoachesService _coachService;
+        private readonly IClientsService _clientService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICoachService coachService,
-            IClientService clientService)
+            ICoachesService coachService,
+            IClientsService clientService)
         {
             _userManager = userManager;
             _signInManager = signInManager;

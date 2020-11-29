@@ -10,6 +10,8 @@
 
         public const string ClientRoleName = "Client";
 
+        public const string DescriptionErrorMessage = "Description is required and its length should be at least 30 characters and 200 at max.";
+
         public const string InvalidOperationExceptionWhileCreatingCoach = "Exception happened in CoachService while creating coach in IDeletableEntityRepository<Coach>";
 
         public const string InvalidOperationExceptionWhileCreatingClient = "Exception happened in ClientService while creating client in IDeletableEntityRepository<Client>";

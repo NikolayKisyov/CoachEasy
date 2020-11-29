@@ -9,6 +9,6 @@
 
     public interface IPlayersService
     {
-        Task<IEnumerable<PlayerViewModel>> GetAllPlayersAsync();
+        Task<IEnumerable<T>> GetAllPlayersAsync<T>();
     }
 }

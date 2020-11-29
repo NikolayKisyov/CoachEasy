@@ -20,6 +20,7 @@
         public string Name { get; set; }
 
         [MaxLength(200)]
+        [Required]
         public string Description { get; set; }
 
         [Required]
@@ -32,7 +33,6 @@
         [Required]
         public string VideoUrl { get; set; }
 
-        [Required]
         public string ImageUrl { get; set; }
 
         public string PictureId { get; set; }
