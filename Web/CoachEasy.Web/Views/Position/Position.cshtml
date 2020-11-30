@@ -30,7 +30,7 @@
     </div>*@
 
 <div class="card-deck">
-    @foreach (var item in Model.Workouts)
+    @foreach (var item in Model.Workouts.Where(x => x.PictureId == null))
     {
         <div class="card col-3 col-lg-6 game-card">
             <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
@@ -43,7 +43,7 @@
     }
 </div>
 
-@foreach (var workout in Model.Workouts)
+@foreach (var workout in Model.Workouts.Where(x => x.PictureId == null))
 {
 <iframe width="956" height="538" src="@workout.VideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 }

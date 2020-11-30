@@ -6,15 +6,32 @@
 }
 
 
-<div class="d-inline-flex">
+<div class="row">
     @foreach (var workout in Model)
     {
-        <div class="card col-6 col-lg-6 game-card">
-            <img class="card-img-top" src="@workout.PictureUrl" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@workout.Name</h5>
-                <p class="card-text">@workout.Description</p>
-            </div>
+        <div class="card col-4 game-card mt-2">
+            @if (!string.IsNullOrEmpty(workout.PictureUrl))
+            {
+                <img src="@workout.PictureUrl" class="card-img-top img-fluid card-image">
+            }
+            else
+            {
+                <img src="@workout.ImageUrl" class="card-img-top img-fluid card-image">
+            }
+        <div class="card-body">
+            <h5 class="card-title">@workout.Name</h5>
+            <p class="card-text">@workout.Description</p>
+            @if (workout.AddedByCoach != null)
+            {
+                <h4>Added by: @workout.AddedByCoach.Name</h4>
+                <a asp-controller="Workout" asp-action="Delete" asp-route-id="@workout.Id" type="button" class="btn btn-danger">Delete</a>
+                <a asp-controller="Workout" asp-action="Edit" asp-route-id="@workout.Id" type="button" class="btn btn-info">Edit</a>
+            }
+            else
+            {
+                <h4>Added by: CoachEasy</h4>
+            }
+        </div>
             <a href="#" class="btn btn-primary">Watch Workout</a>
         </div>
     }

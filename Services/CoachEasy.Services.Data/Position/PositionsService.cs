@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Web.ViewModels;

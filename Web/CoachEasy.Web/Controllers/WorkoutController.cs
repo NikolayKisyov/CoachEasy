@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Workout;
     using CoachEasy.Web.ViewModels.Workouts;
