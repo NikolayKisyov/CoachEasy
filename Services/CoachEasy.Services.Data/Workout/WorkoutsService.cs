@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CoachEasy.Common;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Cloudinary;
@@ -30,7 +31,7 @@
             this.coachesRepository = coachesRepository;
         }
 
-        public async Task CreateWorkoutAsync(CreateWorkoutInputModel input, string userId)
+        public async Task CreateAsync(CreateWorkoutInputModel input, string userId)
         {
             string folderName = "workout_images";
             var inputPicture = input.Image;
@@ -55,13 +56,55 @@
             await this.workoutsRepository.SaveChangesAsync();
         }
 
-        public ICollection<T> GetAll<T>()
+        public async Task EditAsync(EditWorkoutViewModel input)
         {
-            return this.workoutsRepository
+            var workout = this.GetWorkoutById(input.Id);
+            var position = this.positionsRepository.AllAsNoTracking().First(x => x.Name == input.PositionName);
+
+            workout.Name = input.Name;
+            workout.PositionId = position.Id;
+            workout.Description = input.Description;
+            workout.VideoUrl = input.VideoUrl;
+
+            this.workoutsRepository.Update(workout);
+            await this.workoutsRepository.SaveChangesAsync();
+        }
+
+        public EditWorkoutViewModel GetWorkoutForEdit(string id)
+        {
+            var workout = this.GetWorkoutById(id);
+            var position = this.positionsRepository.AllAsNoTracking().First(x => x.Id == workout.PositionId);
+
+            if (workout != null)
+            {
+                var model = new EditWorkoutViewModel()
+                {
+                    Id = workout.Id,
+                    Name = workout.Name,
+                    PositionName = position.Name,
+                    Description = workout.Description,
+                    VideoUrl = workout.VideoUrl,
+                };
+
+                return model;
+            }
+
+            throw new InvalidOperationException(GlobalConstants.InvalidOperationExceptionInWorkoutForEditSearch);
+        }
+
+        public ICollection<T> GetAll<T>() => this.workoutsRepository
                 .AllAsNoTracking()
                 .OrderByDescending(x => x.CreatedOn)
                 .To<T>()
                 .ToList();
+
+        public Workout GetWorkoutById(string id) => this.workoutsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
+
+        public async Task DeleteAsync(string id)
+        {
+            var workout = this.GetWorkoutById(id);
+            this.workoutsRepository.Delete(workout);
+            await this.workoutsRepository.SaveChangesAsync();
         }
     }
 }

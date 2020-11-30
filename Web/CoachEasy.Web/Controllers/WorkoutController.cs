@@ -25,6 +25,13 @@
             this.userManager = userManager;
         }
 
+        [HttpGet]
+        public IActionResult All()
+        {
+            var viewModel = this.workoutsService.GetAll<WorkoutViewModel>();
+            return this.View(viewModel);
+        }
+
         [Authorize(Roles = "Coach")]
         [HttpGet]
         public IActionResult Create()
@@ -44,16 +51,38 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.workoutsService.CreateWorkoutAsync(input, user.Id);
+            await this.workoutsService.CreateAsync(input, user.Id);
 
-            return this.Redirect("/");
+            return this.RedirectToAction("All");
         }
 
         [HttpGet]
-        public IActionResult All()
+        [Authorize(Roles = "Coach")]
+        public IActionResult Edit(string id)
         {
-            var viewModel = this.workoutsService.GetAll<WorkoutViewModel>();
-            return this.View(viewModel);
+            var result = this.workoutsService.GetWorkoutForEdit(id);
+
+            return this.View(result);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> Edit(EditWorkoutViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.workoutsService.EditAsync(input);
+            return this.RedirectToAction("All");
+        }
+
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.workoutsService.DeleteAsync(id);
+            return this.RedirectToAction("All");
         }
     }
 }
