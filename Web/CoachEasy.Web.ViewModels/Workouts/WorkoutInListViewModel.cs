@@ -5,9 +5,10 @@
     using System.Text;
 
     using CoachEasy.Data.Models;
+    using CoachEasy.Data.Models.Enums;
     using CoachEasy.Services.Mapping;
 
-    public class WorkoutViewModel : IMapFrom<Workout>
+    public class WorkoutInListViewModel : IMapFrom<Workout>
     {
         public string Id { get; set; }
 
@@ -15,7 +16,7 @@
 
         public string Description { get; set; }
 
-        public string PositionName { get; set; }
+        public PositionName PositionName { get; set; }
 
         public string VideoUrl { get; set; }
 

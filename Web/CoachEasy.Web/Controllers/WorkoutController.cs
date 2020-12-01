@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using CoachEasy.Data.Models;
+    using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Data.Workout;
     using CoachEasy.Web.ViewModels.Workouts;
     using Microsoft.AspNetCore.Authorization;
@@ -14,11 +15,14 @@
 
     public class WorkoutController : BaseController
     {
+        public const int ItemsPerPage = 9;
+
         private readonly IWorkoutsService workoutsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public WorkoutController(
             IWorkoutsService workoutsService,
+            ICoachesService coachesService,
             UserManager<ApplicationUser> userManager)
         {
             this.workoutsService = workoutsService;
@@ -26,9 +30,21 @@
         }
 
         [HttpGet]
-        public IActionResult All()
+        public IActionResult All(int id = 1)
         {
-            var viewModel = this.workoutsService.GetAll<WorkoutViewModel>();
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            var viewModel = new ListOfWorkoutsViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                WorkoutsCount = this.workoutsService.GetCount(),
+                Workouts = this.workoutsService.GetAll<WorkoutInListViewModel>(id, ItemsPerPage),
+            };
+
             return this.View(viewModel);
         }
 
@@ -50,7 +66,6 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-
             await this.workoutsService.CreateAsync(input, user.Id);
 
             return this.RedirectToAction("All");

@@ -84,6 +84,7 @@
                     PositionName = position.Name,
                     Description = workout.Description,
                     VideoUrl = workout.VideoUrl,
+                    CoachId = workout.CoachId,
                 };
 
                 return model;
@@ -92,19 +93,31 @@
             throw new InvalidOperationException(GlobalConstants.InvalidOperationExceptionInWorkoutForEditSearch);
         }
 
-        public ICollection<T> GetAll<T>() => this.workoutsRepository
-                .AllAsNoTracking()
-                .OrderByDescending(x => x.CreatedOn)
-                .To<T>()
-                .ToList();
-
-        public Workout GetWorkoutById(string id) => this.workoutsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
-
         public async Task DeleteAsync(string id)
         {
             var workout = this.GetWorkoutById(id);
             this.workoutsRepository.Delete(workout);
             await this.workoutsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        {
+            return this.workoutsRepository
+                .AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public Workout GetWorkoutById(string id)
+        {
+            return this.workoutsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
+        }
+
+        public int GetCount()
+        {
+            return this.workoutsRepository.AllAsNoTracking().Count();
         }
     }
 }

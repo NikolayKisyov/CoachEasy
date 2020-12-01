@@ -29,5 +29,7 @@
         [Required]
         [Display(Name = "Embed video link")]
         public string VideoUrl { get; set; }
+
+        public string CoachId { get; set; }
     }
 }
