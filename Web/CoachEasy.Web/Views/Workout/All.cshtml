@@ -2,9 +2,17 @@
 @using CoachEasy.Web.ViewModels.Workouts
 @using CoachEasy.Common
 @{
-    this.ViewData["Title"] = "All Workouts, page" + Model.PageNumber;
+    this.ViewData["Title"] = "All Workouts, page " + Model.PageNumber;
 }
 
+@if (this.TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success">@this.TempData["SuccessMessage"]</div>
+}
+@if (this.TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger">@this.TempData["ErrorMessage"]</div>
+}
 
 <div class="row">
     @foreach (var workout in Model.Workouts)
@@ -20,7 +28,15 @@
             }
             <div class="card-body">
                 <h5 class="card-title">@workout.Name</h5>
-                <div class="font-weight-bolder text-colorise">Position: @Html.DisplayFor(model => workout.PositionName)</div><br>
+                <div class="font-weight-bolder text-colorise">
+                    Position: @Html.DisplayFor(model => workout.PositionName)
+                    @if (User.IsInRole("Client"))
+                    {
+                        <a asp-controller="Client" asp-action="AddToWorkoutList" asp-route-id="@workout.Id">
+                            <i class="fas fa-basketball-ball icon"></i>
+                        </a>
+                    }
+                </div><br>
                 <p class="card-text">@workout.Description</p>
                 @if (workout.AddedByCoach != null)
                 {

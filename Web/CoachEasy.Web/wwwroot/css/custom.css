@@ -30,3 +30,17 @@
 .cursor{
     cursor:pointer;
 }
+
+.jumbobg {
+    background-color: darkorange;
+}
+
+.icon{
+   color: darkorange;
+}
+
+.icon:hover {
+    background-color: darkorange;
+    color:whitesmoke;
+    cursor:pointer;
+}

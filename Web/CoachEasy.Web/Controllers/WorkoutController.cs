@@ -22,7 +22,6 @@
 
         public WorkoutController(
             IWorkoutsService workoutsService,
-            ICoachesService coachesService,
             UserManager<ApplicationUser> userManager)
         {
             this.workoutsService = workoutsService;

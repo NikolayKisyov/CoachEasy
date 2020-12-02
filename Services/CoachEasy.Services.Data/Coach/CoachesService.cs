@@ -53,5 +53,12 @@
 
             throw new InvalidOperationException(GlobalConstants.InvalidOperationExceptionWhileCreatingCoach);
         }
+
+        public Coach GetCoachByUserId(string id)
+        {
+            var coach = this.coachRepository.AllAsNoTracking().FirstOrDefault(x => x.UserId == id);
+
+            return coach;
+        }
     }
 }

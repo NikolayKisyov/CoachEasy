@@ -13,6 +13,7 @@
         public Workout()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Users = new HashSet<WorkoutClients>();
         }
 
         [Required]
@@ -42,5 +43,7 @@
         public string CoachId { get; set; }
 
         public virtual Coach AddedByCoach { get; set; }
+
+        public virtual ICollection<WorkoutClients> Users { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace CoachEasy.Data.Seeding.WorkoutsSeeding
+﻿
+namespace CoachEasy.Data.Seeding.WorkoutsSeeding
 {
     using System;
     using System.Collections.Generic;

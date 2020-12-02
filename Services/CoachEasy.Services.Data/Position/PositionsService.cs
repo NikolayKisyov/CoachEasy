@@ -8,6 +8,7 @@
 
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
+    using CoachEasy.Data.Models.Enums;
     using CoachEasy.Web.ViewModels;
     using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +36,20 @@
                 }).FirstOrDefaultAsync();
 
             return player;
+        }
+
+        public Position GetPositionById(string id)
+        {
+           var position = this.repository.AllAsNoTracking().First(x => x.Id == id);
+
+           return position;
+        }
+
+        public Position GetPositionByName(PositionName name)
+        {
+            var position = this.repository.AllAsNoTracking().First(x => x.Name == name);
+
+            return position;
         }
     }
 }
