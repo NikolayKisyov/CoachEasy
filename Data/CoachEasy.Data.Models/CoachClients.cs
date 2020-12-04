@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class CoachClients
+    using CoachEasy.Data.Common.Models;
+
+    public class CoachClients : BaseDeletableModel<string>
     {
         public CoachClients()
         {
             this.Id = Guid.NewGuid().ToString();
         }
-
-        public string Id { get; set; }
 
         public string CoachId { get; set; }
 

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using CoachEasy.Common;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
@@ -17,7 +18,6 @@
     {
         private readonly ICloudinaryService cloudinaryService;
         private readonly IDeletableEntityRepository<Workout> workoutsRepository;
-        private readonly IDeletableEntityRepository<Position> positionsRepository;
         private readonly IPositionsService positionsService;
         private readonly ICoachesService coachesService;
 

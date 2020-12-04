@@ -250,11 +250,25 @@ namespace CoachEasy.Data.Migrations
                     b.Property<string>("CoachId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
                     b.HasIndex("CoachId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.ToTable("CoachClients");
                 });
@@ -512,13 +526,25 @@ namespace CoachEasy.Data.Migrations
                     b.ToTable("Workouts");
                 });
 
-            modelBuilder.Entity("CoachEasy.Data.Models.WorkoutClients", b =>
+            modelBuilder.Entity("CoachEasy.Data.Models.WorkoutsList", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ClientId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("WorkoutId")
                         .HasColumnType("nvarchar(450)");
@@ -527,9 +553,11 @@ namespace CoachEasy.Data.Migrations
 
                     b.HasIndex("ClientId");
 
+                    b.HasIndex("IsDeleted");
+
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("WorkoutClients");
+                    b.ToTable("WorkoutsList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -697,14 +725,14 @@ namespace CoachEasy.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CoachEasy.Data.Models.WorkoutClients", b =>
+            modelBuilder.Entity("CoachEasy.Data.Models.WorkoutsList", b =>
                 {
                     b.HasOne("CoachEasy.Data.Models.Client", "Client")
                         .WithMany("WorkoutsList")
                         .HasForeignKey("ClientId");
 
                     b.HasOne("CoachEasy.Data.Models.Workout", "Workout")
-                        .WithMany("Users")
+                        .WithMany("WorkoutsLists")
                         .HasForeignKey("WorkoutId");
                 });
 

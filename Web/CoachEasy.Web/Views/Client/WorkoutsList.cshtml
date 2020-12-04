@@ -18,31 +18,31 @@
             {
                 <img src="@workout.ImageUrl" style="max-width:35%;" alt="Alternate Text" />
             }
-        <div class="col">
-            <h3>@workout.Name</h3>
-            
-            <ul class="list-group mr-lg-5 font-weight-bold">
-                <li class="list-group-item orangebackground">Position: @Html.DisplayFor(model => workout.PositionName)</li>
-                <li class="list-group-item">@workout.Description</li>
-                @if (workout.AddedByCoach != null)
-                {
-                    <li class="list-group-item">Added by: @workout.AddedByCoach.Name</li>
+            <div class="col">
+                <h3>@workout.Name</h3>
 
-                }
-                else
-                {
-                    <li class="list-group-item">Added by: CoachEasy</li>
-                }
-            <li class="list-group-item">
-                <div>
-                    <a href="#" class="btn orangebackground font-weight-bold">Watch Workout</a>
-                    <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@workout.Id">
-                    </form>
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Remove</button>
-                </div>
-            </li>
-            </ul>
-        </div>
+                <ul class="list-group mr-lg-5 font-weight-bold">
+                    <li class="list-group-item orangebackground">Position: @Html.DisplayFor(model => workout.PositionName)</li>
+                    <li class="list-group-item">@workout.Description</li>
+                    @if (workout.AddedByCoach != null)
+                    {
+                        <li class="list-group-item">Added by: @workout.AddedByCoach.Name</li>
+
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Added by: CoachEasy</li>
+                    }
+                    <li class="list-group-item">
+                        <div>
+                            <a href="#" class="btn orangebackground font-weight-bold">Watch Workout</a>
+                            <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@workout.Id">
+                            </form>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Remove</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
         <hr />
     }

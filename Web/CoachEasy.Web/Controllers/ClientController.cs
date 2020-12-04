@@ -67,7 +67,6 @@
             return this.View(viewModel);
         }
 
-        [HttpPost]
         public async Task<IActionResult> Delete(string workoutId)
         {
             var user = await this.userManager.GetUserAsync(this.User);

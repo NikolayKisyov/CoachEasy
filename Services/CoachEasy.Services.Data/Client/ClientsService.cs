@@ -5,20 +5,27 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using CoachEasy.Common;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
+    using CoachEasy.Services.Data.Models;
     using CoachEasy.Services.Data.Workout;
+    using CoachEasy.Services.Mapping;
     using CoachEasy.Web.ViewModels;
+    using CoachEasy.Web.ViewModels.Workouts;
+    using Microsoft.EntityFrameworkCore;
 
     public class ClientsService : IClientsService
     {
         private readonly IDeletableEntityRepository<Client> clientRepository;
-        private readonly IRepository<WorkoutClients> workoutClientsrepository;
+        private readonly IRepository<WorkoutsList> workoutClientsrepository;
+        private readonly IDeletableEntityRepository<Workout> workoutsRepository;
+        private readonly IPositionsService positionsService;
 
         public ClientsService(
             IDeletableEntityRepository<Client> repository,
-            IRepository<WorkoutClients> workoutClientsrepository)
+            IRepository<WorkoutsList> workoutClientsrepository)
         {
             this.clientRepository = repository;
             this.workoutClientsrepository = workoutClientsrepository;
@@ -26,14 +33,11 @@
 
         public async Task<bool> AddWorkoutToClientList(string id, string userId)
         {
-            var client = this.clientRepository.All()
-                                 .Where(x => x.UserId == userId)
-                                 .Select(x => new {x.Id,x.WorkoutsList })
-                                 .First();
+            var client = this.GetClient(userId);
 
             if (!client.WorkoutsList.Any(x => x.ClientId == client.Id && x.WorkoutId == id))
             {
-                var workout = new WorkoutClients { WorkoutId = id, ClientId = client.Id };
+                var workout = new WorkoutsList { WorkoutId = id, ClientId = client.Id };
 
                 await this.workoutClientsrepository.AddAsync(workout);
                 await this.workoutClientsrepository.SaveChangesAsync();
@@ -66,11 +70,57 @@
             throw new InvalidOperationException(GlobalConstants.InvalidOperationExceptionWhileCreatingClient);
         }
 
-        public Client GetClientById(string userId)
+        public async Task<IEnumerable<WorkoutInListViewModel>> GetWorkouts(string userId, int page, int itemsPerPage)
+        {
+            var result = await this.workoutClientsrepository
+                .AllAsNoTracking()
+                .Where(x => x.Client.UserId == userId)
+                .Select(x => new WorkoutInListViewModel
+                {
+                    Id = x.Workout.Id,
+                    Name = x.Workout.Name,
+                    PositionName = x.Workout.Position.Name,
+                    Description = x.Workout.Description,
+                    ImageUrl = x.Workout.ImageUrl,
+                    PictureUrl = x.Workout.Picture.Url,
+                    VideoUrl = x.Workout.VideoUrl,
+                    AddedByCoach = x.Workout.AddedByCoach,
+                })
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .ToListAsync();
+
+            return result;
+        }
+
+        //GetClient uses ClientDto so we can get the WorkoutList of the client.
+        public ClientDto GetClient(string userId)
+        {
+            return this.clientRepository.All()
+                                 .Where(x => x.UserId == userId)
+                                 .Select(x => new ClientDto
+                                 {
+                                     Id = x.Id,
+                                     WorkoutsList = x.WorkoutsList,
+                                 })
+                                 .First();
+        }
+
+        public int GetCount(string userId)
+        {
+            var client = this.GetClient(userId);
+
+            return client.WorkoutsList.Count;
+        }
+
+        public async Task Delete(string workoutId, string userId)
         {
             var client = this.clientRepository.AllAsNoTracking().FirstOrDefault(x => x.UserId == userId);
 
-            return client;
+            var workout = this.workoutClientsrepository.All()
+                .FirstOrDefault(x => x.WorkoutId == workoutId && x.ClientId == client.Id);
+
+            this.workoutClientsrepository.Delete(workout);
+            await this.workoutClientsrepository.SaveChangesAsync();
         }
     }
 }
