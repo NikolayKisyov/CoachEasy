@@ -93,6 +93,7 @@
         }
 
         [Authorize(Roles = "Coach")]
+        [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             await this.workoutsService.DeleteAsync(id);

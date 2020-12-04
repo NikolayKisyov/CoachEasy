@@ -1,0 +1,47 @@
+﻿@model ListOfWorkoutsViewModel
+@using CoachEasy.Web.ViewModels.Workouts
+@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "Workouts List, page " + Model.PageNumber;
+}
+
+<div class="row">
+    @foreach (var workout in Model.Workouts)
+    {
+        <div class="card col-4 game-card mt-2">
+            @if (!string.IsNullOrEmpty(workout.PictureUrl))
+            {
+                <img src="@workout.PictureUrl" class="card-img-top img-fluid card-image">
+            }
+            else
+            {
+                <img src="@workout.ImageUrl" class="card-img-top img-fluid card-image">
+            }
+            <div class="card-body">
+                <h5 class="card-title">@workout.Name</h5>
+                <div class="font-weight-bolder text-colorise">
+                    Position: @Html.DisplayFor(model => workout.PositionName)
+                   
+                </div><br>
+                <p class="card-text">@workout.Description</p>
+                @if (workout.AddedByCoach != null)
+                {
+                    <h4>Added by: @workout.AddedByCoach.Name</h4>
+                    @if (this.User.Claims.FirstOrDefault().Value == workout.AddedByCoach.UserId)
+                    {
+                        <a asp-controller="Workout" asp-action="Delete" asp-route-id="@workout.Id" type="button" class="btn btn-danger">Delete</a>
+                        <a asp-controller="Workout" asp-action="Edit" asp-route-id="@workout.Id" type="button" class="btn btn-info">Edit</a>
+                    }
+                }
+                else
+                {
+                    <h4>Added by: CoachEasy</h4>
+                }
+            </div>
+            <a href="#" class="btn btn-primary">Watch Workout</a>
+        </div>
+    }
+</div>
+
+
+<partial name="_PagingPartial" model="@Model" />

@@ -42,6 +42,12 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Create">Add Workout</a>
                                 </li>
                             }
+                            @if (User.IsInRole("Client"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="WorkoutsList">Your WorkoutList</a>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>

@@ -8,24 +8,24 @@
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Client;
-    using CoachEasy.Web.ViewModels.Players;
+    using CoachEasy.Services.Data.Models;
+    using CoachEasy.Web.ViewModels.Workouts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class ClientController : BaseController
     {
+        public const int ItemsPerPage = 9;
+
         private readonly IClientsService clientsService;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IDeletableEntityRepository<Workout> cRep;
 
         public ClientController(
             IClientsService clientsService,
-            UserManager<ApplicationUser> userManager,
-            IDeletableEntityRepository<Workout> cRep)
+            UserManager<ApplicationUser> userManager)
         {
             this.clientsService = clientsService;
             this.userManager = userManager;
-            this.cRep = cRep;
         }
 
         [HttpGet]
@@ -44,6 +44,27 @@
             }
 
             return this.RedirectToAction("All", "Workout");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> WorkoutsList(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            //var viewModel = new ListOfWorkoutsViewModel
+            //{
+            //    ItemsPerPage = ItemsPerPage,
+            //    PageNumber = id,
+            //    WorkoutsCount = this.clientsService.GetCount(user.Id),
+            //    Workouts = this.clientsService.GetAllForClient<WorkoutInListViewModel>(user.Id, id, ItemsPerPage),
+            //};
+
+            return this.View(/*viewModel*/);
         }
     }
 }
