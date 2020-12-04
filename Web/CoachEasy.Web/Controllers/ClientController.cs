@@ -56,15 +56,23 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            //var viewModel = new ListOfWorkoutsViewModel
-            //{
-            //    ItemsPerPage = ItemsPerPage,
-            //    PageNumber = id,
-            //    WorkoutsCount = this.clientsService.GetCount(user.Id),
-            //    Workouts = this.clientsService.GetAllForClient<WorkoutInListViewModel>(user.Id, id, ItemsPerPage),
-            //};
+            var viewModel = new ListOfWorkoutsViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                WorkoutsCount = this.clientsService.GetCount(user.Id),
+                Workouts = await this.clientsService.GetWorkouts(user.Id, id, ItemsPerPage),
+            };
 
-            return this.View(/*viewModel*/);
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string workoutId)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.clientsService.Delete(workoutId, user.Id);
+            return this.RedirectToAction(nameof(this.WorkoutsList));
         }
     }
 }

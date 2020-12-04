@@ -31,7 +31,7 @@
     cursor:pointer;
 }
 
-.jumbobg {
+.orangebackground {
     background-color: darkorange;
 }
 
@@ -43,4 +43,9 @@
     background-color: darkorange;
     color:whitesmoke;
     cursor:pointer;
+}
+
+.workoutimage-resizer {
+    height:450px;
+    width: 320px;
 }
