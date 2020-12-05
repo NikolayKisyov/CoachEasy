@@ -13,6 +13,10 @@
 {
     <div class="alert alert-danger">@this.TempData["ErrorMessage"]</div>
 }
+@if (this.TempData.ContainsKey("InvalidMessage"))
+{
+    <div class="alert alert-danger">@this.TempData["InvalidMessage"]</div>
+}
 
 <div class="row">
     @foreach (var workout in Model.Workouts)
@@ -20,11 +24,11 @@
         <div class="card col-4 game-card mt-2">
             @if (!string.IsNullOrEmpty(workout.PictureUrl))
             {
-                <img src="@workout.PictureUrl" class="card-img-top img-fluid card-image">
+                <img src="@workout.PictureUrl" class="card-img-top img-fluid img-workout">
             }
             else
             {
-                <img src="@workout.ImageUrl" class="card-img-top img-fluid card-image">
+                <img src="@workout.ImageUrl" class="card-img-top img-fluid img-workout">
             }
             <div class="card-body">
                 <h5 class="card-title">@workout.Name</h5>
@@ -33,7 +37,7 @@
                     @if (User.IsInRole("Client"))
                     {
                         <a asp-controller="Client" asp-action="AddToWorkoutList" asp-route-id="@workout.Id">
-                            <i class="fas fa-basketball-ball icon"></i>
+                            <i class="fas fa-basketball-ball icon" title="Add to your list"></i>
                         </a>
                     }
                 </div><br>

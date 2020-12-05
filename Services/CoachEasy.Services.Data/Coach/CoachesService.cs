@@ -5,12 +5,15 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using CoachEasy.Common;
+    using CoachEasy.Services.Mapping;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Picture;
     using CoachEasy.Web.ViewModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class CoachesService : ICoachesService
     {
@@ -52,6 +55,16 @@
             }
 
             throw new InvalidOperationException(GlobalConstants.InvalidOperationExceptionWhileCreatingCoach);
+        }
+
+        public async Task<IEnumerable<T>> GetAllCoachesAsync<T>()
+        {
+            var coaches = await this.coachRepository
+                .AllAsNoTracking()
+                .To<T>()
+                .ToListAsync();
+
+            return coaches;
         }
 
         public Coach GetCoachByUserId(string id)

@@ -12,11 +12,11 @@
         <div class="row">
             @if (!string.IsNullOrEmpty(workout.PictureUrl))
             {
-                <img src="@workout.PictureUrl" style="max-width:35%;" alt="Alternate Text" />
+                <img src="@workout.PictureUrl" class="img-workoutlist" style="max-width:35%;" alt="Alternate Text" />
             }
             else
             {
-                <img src="@workout.ImageUrl" style="max-width:35%;" alt="Alternate Text" />
+                <img src="@workout.ImageUrl" class="img-workoutlist" style="max-width:35%;" alt="Alternate Text" />
             }
             <div class="col">
                 <h3>@workout.Name</h3>
@@ -36,9 +36,11 @@
                     <li class="list-group-item">
                         <div>
                             <a href="#" class="btn orangebackground font-weight-bold">Watch Workout</a>
-                            <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@workout.Id">
-                            </form>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Remove</button>
+                            <div>
+                                <form method="post" asp-controller="Client" asp-action="Delete" id="deleteForm" asp-route-id="@workout.Id">
+                                </form>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Remove</button>
+                            </div>
                         </div>
                     </li>
                 </ul>

@@ -16,6 +16,8 @@
 
         public const string WorkoutAlreadyAdded = "You've already added this workout to your list.";
 
+        public const string InvalidWorkout = "Please select a valid workout to add.";
+
         public const string InvalidOperationExceptionInWorkoutForEditSearch = "Exception happened in IWorkoutsService while trying to find the workout you want to edit";
 
         public const string InvalidOperationExceptionWhileCreatingCoach = "Exception happened in CoachService while creating coach in IDeletableEntityRepository<Coach>";

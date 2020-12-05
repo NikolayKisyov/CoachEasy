@@ -12,6 +12,8 @@
     {
         Task<bool> CreateCoachAsync(CreateCoachInputModel input, ApplicationUser user);
 
+        Task<IEnumerable<T>> GetAllCoachesAsync<T>();
+
         Coach GetCoachByUserId(string id);
     }
 }

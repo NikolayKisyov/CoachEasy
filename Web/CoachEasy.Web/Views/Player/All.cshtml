@@ -15,48 +15,20 @@
     <div class="d-inline-flex justify-content-center">
         @foreach (var player in Model)
         {
-            <div class="card col-6 col-lg-3 game-card image-resizer">
+            <div class="card col-6 col-lg-3 image-resizer">
                 <img src="@player.ImageUrl"
                      class="card-img-top img-fluid card-image">
                 <div class="card-body">
-                    <h5 class="card-title text-center" data-toggle="tooltip" data-placement="bottom"
-                        title="Description:<br>Description">
-                    </h5>
                     <h2 class="">@player.Name</h2>
                     <h5>Position:</h5>
-                    <ul class="list-group list-group-flush">
-                        <a asp-controller="Position" asp-action="Position" asp-route-id="@player.Id" class="btn btn-outline-primary" role="button">@Html.DisplayFor(model => player.PositionName)</a>
-                        <li class="list-group-item">
-                            Team Name: <br>
-                            <div class="attack-stat">@player.TeamName</div><br>
-                            Experience: <br>
-                            <div class="health-stat">@player.Experience</div><br>
-                            Championships: <br>
-                            <div class="health-stat">@player.Championships</div><br>
-                            Height: <br>
-                            <div class="health-stat">@player.Height</div><br>
-                            Weight: <br>
-                            <div class="health-stat">@player.Weight</div>
-                        </li>
+                    <a asp-controller="Position" asp-action="Position" asp-route-id="@player.Id" class="btn btn-outline-warning" role="button">@Html.DisplayFor(model => player.PositionName)</a>
+                    <ul class="list-group mt-1 border-danger">
+                        <li class="list-group-item">Team Name:<br> @player.TeamName</li>
+                        <li class="list-group-item">Experience: @player.Experience</li>
+                        <li class="list-group-item">Championships: @player.Championships</li>
+                        <li class="list-group-item">Height: @player.Height</li>
+                        <li class="list-group-item">Weight: @player.Weight</li>
                     </ul>
-                    @*<div class="item-feature">
-                        <ul>
-                            <li>
-                                <div class="feature-wrap">
-                                    <div class="media">
-                                        <div class="feature-icon">
-                                            <i class="far fa-clock"></i>
-                                        </div>
-                                        <div class="media-body space-sm">
-                                            <div class="feature-title">PREP TIME</div>
-                                            <div class="feature-sub-title">@Model.PreparationTime.TotalMinutes Mins</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                        </ul>
-                    </div>*@
                 </div>
             </div>
         }

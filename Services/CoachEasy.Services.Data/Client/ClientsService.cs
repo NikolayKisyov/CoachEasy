@@ -31,9 +31,13 @@
             this.workoutClientsrepository = workoutClientsrepository;
         }
 
-        public async Task<bool> AddWorkoutToClientList(string id, string userId)
+        public async Task<string> AddWorkoutToClientList(string id, string userId)
         {
             var client = this.GetClient(userId);
+            if (id == null)
+            {
+                return "invalid";
+            }
 
             if (!client.WorkoutsList.Any(x => x.ClientId == client.Id && x.WorkoutId == id))
             {
@@ -41,10 +45,10 @@
 
                 await this.workoutClientsrepository.AddAsync(workout);
                 await this.workoutClientsrepository.SaveChangesAsync();
-                return true;
+                return "created";
             }
 
-            return false;
+            return "contained";
         }
 
         public async Task<bool> CreateClientAsync(CreateClientInputModel input, ApplicationUser user)

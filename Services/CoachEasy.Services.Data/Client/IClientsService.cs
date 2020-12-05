@@ -20,7 +20,7 @@
 
         Task<bool> CreateClientAsync(CreateClientInputModel input, ApplicationUser user);
 
-        Task<bool> AddWorkoutToClientList(string id, string userId);
+        Task<string> AddWorkoutToClientList(string id, string userId);
 
         Task Delete(string workoutId, string userId);
     }

@@ -45,7 +45,20 @@
     cursor:pointer;
 }
 
-.workoutimage-resizer {
-    height:450px;
-    width: 320px;
+.img-coach {
+    width: 218px;
+    height: 218px;
+    object-fit: cover;
+}
+
+.img-workoutlist {
+    width: 400px;
+    height: 330px;
+    object-fit: cover;
+}
+
+.img-workout {
+    width: 350px;
+    height: 270px;
+    object-fit: cover;
 }
