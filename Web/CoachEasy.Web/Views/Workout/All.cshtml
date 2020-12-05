@@ -18,6 +18,25 @@
     <div class="alert alert-danger">@this.TempData["InvalidMessage"]</div>
 }
 
+<form  method="get" asp-action="All">
+    <input type="checkbox" asp-for="InputModel.PointGuard">
+    <label asp-for="InputModel.PointGuard"></label>
+
+    <input type="checkbox" asp-for="InputModel.ShootingGuard">
+    <label asp-for="InputModel.ShootingGuard"></label>
+
+    <input type="checkbox" asp-for="InputModel.SmallForward">
+    <label asp-for="InputModel.SmallForward"></label>
+
+    <input type="checkbox" asp-for="InputModel.PowerForward">
+    <label asp-for="InputModel.PowerForward"></label>
+
+    <input type="checkbox" asp-for="InputModel.Center">
+    <label asp-for="InputModel.Center"></label>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
 <div class="row">
     @foreach (var workout in Model.Workouts)
     {
@@ -62,4 +81,59 @@
 </div>
 
 
-<partial name="_PagingPartial" model="@Model" />
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-controller="Home" asp-action="Search" asp-route-id="@Model.PreviousPageNumber"
+               asp-route-pointguard="@Model.InputModel.PointGuard"
+               asp-route-shootingguard="@Model.InputModel.ShootingGuard"
+               asp-route-smallforward="@Model.InputModel.SmallForward"
+               asp-route-powerforward="@Model.InputModel.PowerForward"
+               asp-route-center="@Model.InputModel.Center">Previous</a>
+        </li>
+        @for (int i = Model.PageNumber - 4; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Workout" asp-action="All" asp-route-id="@i"
+                       asp-route-make="@Model.Make"
+                       asp-route-model="@Model.Model"
+                       asp-route-year="@Model.Year"
+                       asp-route-price="@Model.Price"
+                       asp-route-enginetype="@Model.EngineType">@i</a>
+                </li>
+            }
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 4; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Home" asp-action="Search" asp-route-id="@i"
+                       asp-route-make="@Model.Make"
+                       asp-route-model="@Model.Model"
+                       asp-route-year="@Model.Year"
+                       asp-route-price="@Model.Price"
+                       asp-route-enginetype="@Model.EngineType">@i</a>
+                </li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link"
+               asp-controller="Home" asp-action="Search" asp-route-id="@Model.NextPageNumber"
+               asp-route-make="@Model.Make"
+               asp-route-model="@Model.Model"
+               asp-route-year="@Model.Year"
+               asp-route-price="@Model.Price"
+               asp-route-enginetype="@Model.EngineType"
+               asp-route-gearbox="@Model.Gearbox">Next</a>
+        </li>
+    </ul>
+</nav>
