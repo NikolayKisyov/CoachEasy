@@ -29,20 +29,41 @@
         }
 
         [HttpGet]
-        public IActionResult All(int id = 1)
+        public IActionResult All(SearchWorkoutInputModel inputModel, int id = 1)
         {
             if (id <= 0)
             {
                 return this.NotFound();
             }
 
+            var result = this.workoutsService.GetSearchedPositions<WorkoutInListViewModel>(inputModel, id, ItemsPerPage);
+
+            //if (inputModel != null)
+            //{   
             var viewModel = new ListOfWorkoutsViewModel
-            {
-                ItemsPerPage = ItemsPerPage,
-                PageNumber = id,
-                WorkoutsCount = this.workoutsService.GetCount(),
-                Workouts = this.workoutsService.GetAll<WorkoutInListViewModel>(id, ItemsPerPage),
-            };
+                {
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = id,
+                    WorkoutsCount = result.Count,
+                    Workouts = result.Workouts,
+                    PointGuard = inputModel.PointGuard,
+                    ShootingGuard = inputModel.ShootingGuard,
+                    SmallForward = inputModel.SmallForward,
+                    PowerForward = inputModel.PowerForward,
+                    Center = inputModel.Center,
+                };
+
+            //}
+            //else
+            //{
+            //    viewModel = new ListOfWorkoutsViewModel
+            //    {
+            //        ItemsPerPage = ItemsPerPage,
+            //        PageNumber = id,
+            //        WorkoutsCount = this.workoutsService.GetCount(),
+            //        Workouts = this.workoutsService.GetAll<WorkoutInListViewModel>(id, ItemsPerPage),
+            //    };
+            //}
 
             return this.View(viewModel);
         }

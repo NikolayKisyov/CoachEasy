@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CoachEasy.Common;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
@@ -15,7 +16,7 @@
 
     public class ClientController : BaseController
     {
-        public const int ItemsPerPage = 9;
+        public const int ItemsPerPage = 6;
 
         private readonly IClientsService clientsService;
         private readonly UserManager<ApplicationUser> userManager;
@@ -71,10 +72,10 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> Delete(string workoutId)
+        public async Task<IActionResult> Delete(string id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.clientsService.Delete(workoutId, user.Id);
+            await this.clientsService.Delete(id, user.Id);
             return this.RedirectToAction(nameof(this.WorkoutsList));
         }
     }

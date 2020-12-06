@@ -18,21 +18,21 @@
     <div class="alert alert-danger">@this.TempData["InvalidMessage"]</div>
 }
 
-<form  method="get" asp-action="All">
-    <input type="checkbox" asp-for="InputModel.PointGuard">
-    <label asp-for="InputModel.PointGuard"></label>
+<form method="get" asp-action="All">
+    <input type="checkbox" asp-for="PointGuard">
+    <label asp-for="PointGuard"></label>
 
-    <input type="checkbox" asp-for="InputModel.ShootingGuard">
-    <label asp-for="InputModel.ShootingGuard"></label>
+    <input type="checkbox" asp-for="ShootingGuard">
+    <label asp-for="ShootingGuard"></label>
 
-    <input type="checkbox" asp-for="InputModel.SmallForward">
-    <label asp-for="InputModel.SmallForward"></label>
+    <input type="checkbox" asp-for="SmallForward">
+    <label asp-for="SmallForward"></label>
 
-    <input type="checkbox" asp-for="InputModel.PowerForward">
-    <label asp-for="InputModel.PowerForward"></label>
+    <input type="checkbox" asp-for="PowerForward">
+    <label asp-for="PowerForward"></label>
 
-    <input type="checkbox" asp-for="InputModel.Center">
-    <label asp-for="InputModel.Center"></label>
+    <input type="checkbox" asp-for="Center">
+    <label asp-for="Center"></label>
 
     <button type="submit" class="btn btn-primary">Filter</button>
 </form>
@@ -84,12 +84,12 @@
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
-            <a class="page-link" asp-controller="Home" asp-action="Search" asp-route-id="@Model.PreviousPageNumber"
-               asp-route-pointguard="@Model.InputModel.PointGuard"
-               asp-route-shootingguard="@Model.InputModel.ShootingGuard"
-               asp-route-smallforward="@Model.InputModel.SmallForward"
-               asp-route-powerforward="@Model.InputModel.PowerForward"
-               asp-route-center="@Model.InputModel.Center">Previous</a>
+            <a class="page-link" asp-controller="Workout" asp-action="All" asp-route-id="@Model.PreviousPageNumber"
+               asp-route-pointguard="@Model.PointGuard"
+               asp-route-shootingguard="@Model.ShootingGuard"
+               asp-route-smallforward="@Model.SmallForward"
+               asp-route-powerforward="@Model.PowerForward"
+               asp-route-center="@Model.Center">Previous</a>
         </li>
         @for (int i = Model.PageNumber - 4; i < Model.PageNumber; i++)
         {
@@ -97,11 +97,11 @@
             {
                 <li class="page-item">
                     <a class="page-link" asp-controller="Workout" asp-action="All" asp-route-id="@i"
-                       asp-route-make="@Model.Make"
-                       asp-route-model="@Model.Model"
-                       asp-route-year="@Model.Year"
-                       asp-route-price="@Model.Price"
-                       asp-route-enginetype="@Model.EngineType">@i</a>
+                       asp-route-pointguard="@Model.PointGuard"
+                       asp-route-shootingguard="@Model.ShootingGuard"
+                       asp-route-smallforward="@Model.SmallForward"
+                       asp-route-powerforward="@Model.PowerForward"
+                       asp-route-center="@Model.Center">@i</a>
                 </li>
             }
         }
@@ -115,25 +115,24 @@
         {
             if (i <= Model.PagesCount)
             {
-                <li class="page-item">
-                    <a class="page-link" asp-controller="Home" asp-action="Search" asp-route-id="@i"
-                       asp-route-make="@Model.Make"
-                       asp-route-model="@Model.Model"
-                       asp-route-year="@Model.Year"
-                       asp-route-price="@Model.Price"
-                       asp-route-enginetype="@Model.EngineType">@i</a>
+                 <li class="page-item">
+                    <a class="page-link" asp-controller="Workout" asp-action="All" asp-route-id="@i"
+                       asp-route-pointguard="@Model.PointGuard"
+                       asp-route-shootingguard="@Model.ShootingGuard"
+                       asp-route-smallforward="@Model.SmallForward"
+                       asp-route-powerforward="@Model.PowerForward"
+                       asp-route-center="@Model.Center">@i</a>
                 </li>
+
             }
         }
         <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
-            <a class="page-link"
-               asp-controller="Home" asp-action="Search" asp-route-id="@Model.NextPageNumber"
-               asp-route-make="@Model.Make"
-               asp-route-model="@Model.Model"
-               asp-route-year="@Model.Year"
-               asp-route-price="@Model.Price"
-               asp-route-enginetype="@Model.EngineType"
-               asp-route-gearbox="@Model.Gearbox">Next</a>
+            <a class="page-link" asp-controller="Workout" asp-action="All" asp-route-id="@Model.NextPageNumber"
+                       asp-route-pointguard="@Model.PointGuard"
+                       asp-route-shootingguard="@Model.ShootingGuard"
+                       asp-route-smallforward="@Model.SmallForward"
+                       asp-route-powerforward="@Model.PowerForward"
+                       asp-route-center="@Model.Center">Next</a>
         </li>
     </ul>
 </nav>
