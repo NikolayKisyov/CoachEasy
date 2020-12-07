@@ -15,20 +15,6 @@
 </div>
 <hr />
 
-@*<div class="card-group">
-        @foreach (var workout in Model.Workouts)
-        {
-            <div class="card d-inline-flex" style="width: 18rem;">
-                <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@workout.Name</h5>
-                    <p class="card-text">@workout.Description</p>
-                    <a href="#" class="btn btn-primary">Watch Workout</a>
-                </div>
-            </div>
-        }
-    </div>*@
-
 <div class="card-deck">
     @foreach (var item in Model.Workouts.Where(x => x.PictureId == null))
     {

@@ -14,6 +14,8 @@
     {
         int GetCount(string userId);
 
+        Client GetClientById(string userId);
+
         ClientDto GetClient(string userId);
 
         Task<IEnumerable<WorkoutInListViewModel>> GetWorkouts(string userId, int page, int itemsPerPage);

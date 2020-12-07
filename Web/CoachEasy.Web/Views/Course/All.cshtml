@@ -1,0 +1,45 @@
+﻿@model CoursesListViewModel
+@using CoachEasy.Web.ViewModels.Courses
+@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "All Courses, page " + Model.PageNumber;
+}
+
+<div class="row">
+    @foreach (var course in Model.Courses)
+    {
+    <div class="card col-4 game-card mt-2">
+        <img src="@course.PictureUrl" class="card-img-top img-fluid img-workout">
+        <div class="card-body">
+            <h4 class="card-title">@course.Name</h4>
+            <hr />
+            <div class="font-weight-bolder text-colorise">
+                Position: @Html.DisplayFor(model => course.PositionName)
+            </div>
+            <div class="font-weight-bolder">
+                Start: @course.StartDate.ToString("D")<br />
+                End: @course.EndDate.ToString("D")
+            </div>
+            <hr />
+            <p class="card-text">@course.Description</p>
+            <hr />
+            @if (course.Coach != null)
+            {
+                <h4>Added by: @course.Coach.Name</h4>
+            }
+        </div>
+        @if (course.HasApplied)
+        {
+            <button type="button" class="btn btn-secondary btn-lg" disabled>Applied</button>
+        }
+        else
+        {
+            <a asp-controller="Course" asp-action="ApplyToCourse" asp-route-id="@course.Id" type="button" class="btn btn-info btn-resize">Apply</a>
+        }
+
+    </div>
+    }
+</div>
+
+
+<partial name="_PagingPartial" model="@Model" />

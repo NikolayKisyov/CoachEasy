@@ -14,8 +14,8 @@
         public Course()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Clients = new HashSet<CourseClients>();
         }
-
 
         [Required]
         [MaxLength(50)]
@@ -32,7 +32,6 @@
         [MaxLength(200)]
         public string Description { get; set; }
 
-
         [Required]
         [ForeignKey(nameof(Coach))]
         public string CoachId { get; set; }
@@ -47,6 +46,6 @@
         [Required]
         public virtual Picture Picture { get; set; }
 
-        public virtual ICollection<Client> Clients { get; set; }
+        public virtual ICollection<CourseClients> Clients { get; set; }
     }
 }

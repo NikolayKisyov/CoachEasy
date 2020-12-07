@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using CoachEasy.Common;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Data.Course;
@@ -54,12 +54,16 @@
         }
 
         [HttpGet]
-        public IActionResult All(int id = 1)
+        public async Task<IActionResult> All(int id = 1)
         {
             if (id <= 0)
             {
                 return this.NotFound();
             }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var userId = user != null ? user.Id : string.Empty;
 
             const int ItemsPerPage = 9;
             var viewModel = new CoursesListViewModel
@@ -67,10 +71,20 @@
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
                 CoursesCount = this.coursesService.GetCount(),
-                Courses = this.coursesService.GetAll<CourseInListViewModel>(id, ItemsPerPage),
+                Courses = await this.coursesService.GetAll(userId, id, ItemsPerPage),
             };
 
             return this.View(viewModel);
+        }
+
+        [Authorize(Roles = GlobalConstants.ClientRoleName)]
+        [HttpGet]
+        public async Task<IActionResult> ApplyToCourse(string id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var result = await this.coursesService.AddClientToCourse(id, user.Id);
+
+            return this.RedirectToAction("All");
         }
     }
 }

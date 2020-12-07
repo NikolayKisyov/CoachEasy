@@ -109,6 +109,13 @@
                                  .First();
         }
 
+        public Client GetClientById(string userId)
+        {
+            return this.clientRepository.All()
+                                 .Where(x => x.UserId == userId)
+                                 .FirstOrDefault();
+        }
+
         public int GetCount(string userId)
         {
             var client = this.GetClient(userId);
