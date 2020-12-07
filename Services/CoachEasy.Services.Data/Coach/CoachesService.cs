@@ -14,6 +14,7 @@
     using CoachEasy.Services.Data.Picture;
     using CoachEasy.Web.ViewModels;
     using Microsoft.EntityFrameworkCore;
+    using CoachEasy.Web.ViewModels.Coaches;
 
     public class CoachesService : ICoachesService
     {

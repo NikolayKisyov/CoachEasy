@@ -34,11 +34,15 @@
 
         public DbSet<Workout> Workouts { get; set; }
 
+        public DbSet<WorkoutsList> WorkoutsList { get; set; }
+
         public DbSet<ContactForm> ContactForms { get; set; }
 
         public DbSet<Coach> Coaches { get; set; }
 
-        public DbSet<CoachClients> CoachClients { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
+        public DbSet<CourseClients> CourseClients { get; set; }
 
         public DbSet<Client> Clients { get; set; }
 

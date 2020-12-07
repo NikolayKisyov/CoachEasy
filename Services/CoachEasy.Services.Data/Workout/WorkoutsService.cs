@@ -9,6 +9,7 @@
     using CoachEasy.Common;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
+    using CoachEasy.Data.Models.Enums;
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Mapping;
@@ -100,6 +101,40 @@
             var workout = this.GetWorkoutById(id);
             this.workoutsRepository.Delete(workout);
             await this.workoutsRepository.SaveChangesAsync();
+        }
+
+        public (IEnumerable<T> Workouts, int Count) GetSearchedPositions<T>(SearchWorkoutInputModel inputModel, int page, int itemsPerPage)
+        {
+            var query = this.workoutsRepository.AllAsNoTracking().AsQueryable();
+
+            if (inputModel.PointGuard != false)
+            {
+                query = query.Where(x => x.Position.Name == PositionName.PointGuard);
+            }
+
+            if (inputModel.ShootingGuard != false)
+            {
+                query = query.Where(x => x.Position.Name == PositionName.ShootingGuard);
+            }
+
+            if (inputModel.SmallForward != false)
+            {
+                query = query.Where(x => x.Position.Name == PositionName.SmallForward);
+            }
+
+            if (inputModel.PowerForward != false)
+            {
+                query = query.Where(x => x.Position.Name == PositionName.PowerForward);
+            }
+
+            if (inputModel.Center != false)
+            {
+                query = query.Where(x => x.Position.Name == PositionName.Center);
+            }
+
+            query = query.OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage);
+
+            return (query.To<T>().Take(itemsPerPage).ToList(), query.To<T>().ToList().Count);
         }
 
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)

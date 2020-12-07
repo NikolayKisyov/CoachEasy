@@ -45,7 +45,7 @@
 
                 await this.workoutClientsrepository.AddAsync(workout);
                 await this.workoutClientsrepository.SaveChangesAsync();
-                return "created";
+                return "added";
             }
 
             return "contained";

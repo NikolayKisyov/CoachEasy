@@ -7,6 +7,7 @@
 
     using CoachEasy.Data.Models;
     using CoachEasy.Web.ViewModels;
+    using CoachEasy.Web.ViewModels.Coaches;
 
     public interface ICoachesService
     {

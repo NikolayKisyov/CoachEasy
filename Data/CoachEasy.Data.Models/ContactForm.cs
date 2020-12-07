@@ -16,15 +16,23 @@
         }
 
         [Required]
-        public string Phone { get; set; }
+        [MaxLength(20)]
+        public string FirstName { get; set; }
 
         [Required]
+        [MaxLength(20)]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        public string Twitter { get; set; }
+        [MaxLength(30)]
+        public string Title { get; set; }
 
         [Required]
-        public string Instagram { get; set; }
+        [MaxLength(300)]
+        public string Content { get; set; }
     }
 }

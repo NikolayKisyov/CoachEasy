@@ -7,36 +7,38 @@
     using System.Text;
 
     using CoachEasy.Data.Common.Models;
+    using CoachEasy.Data.Models.Enums;
 
-    public class Coach : BaseDeletableModel<string>
+    public class Course : BaseDeletableModel<string>
     {
-        public Coach()
+        public Course()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Courses = new HashSet<Course>();
-            this.CoachWorkouts = new HashSet<Workout>();
         }
+
 
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public int Experience { get; set; }
+        public DateTime StarDate { get; set; }
 
+        public DateTime EndDate { get; set; }
+
+        [Required]
+        public PositionName PositionName { get; set; }
+
+        [Required]
+        [MaxLength(200)]
         public string Description { get; set; }
 
-        [Required]
-        public string Phone { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        [ForeignKey(nameof(Coach))]
+        public string CoachId { get; set; }
 
         [Required]
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-
-        [Required]
-        public virtual ApplicationUser User { get; set; }
+        public virtual Coach Coach { get; set; }
 
         [Required]
         [ForeignKey(nameof(Picture))]
@@ -45,9 +47,6 @@
         [Required]
         public virtual Picture Picture { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
-
-        public virtual ICollection<Workout> CoachWorkouts { get; set; }
-        // TODO: Implement Courses in the future
+        public virtual ICollection<Client> Clients { get; set; }
     }
 }

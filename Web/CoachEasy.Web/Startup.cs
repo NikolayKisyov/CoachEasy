@@ -12,6 +12,7 @@
     using CoachEasy.Services.Data.Client;
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Coach;
+    using CoachEasy.Services.Data.Course;
     using CoachEasy.Services.Data.Picture;
     using CoachEasy.Services.Data.Workout;
     using CoachEasy.Services.Mapping;
@@ -76,6 +77,7 @@
             services.AddTransient<IWorkoutsService, WorkoutsService>();
             services.AddTransient<ICoachesService, CoachesService>();
             services.AddTransient<IClientsService, ClientsService>();
+            services.AddTransient<ICoursesService, CoursesService>();
 
             Account cloudinaryCredentials = new Account(
                                    this.configuration["Cloudinary:CloudName"],

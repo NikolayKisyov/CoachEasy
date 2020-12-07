@@ -4,14 +4,16 @@ using CoachEasy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoachEasy.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201207125510_AddCourses")]
+    partial class AddCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,7 +300,6 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CoachId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -308,12 +309,13 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ForPosition")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -322,16 +324,7 @@ namespace CoachEasy.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PictureId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("PositionName")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StarDate")
                         .HasColumnType("datetime2");
@@ -341,8 +334,6 @@ namespace CoachEasy.Data.Migrations
                     b.HasIndex("CoachId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("Courses");
                 });
@@ -764,15 +755,7 @@ namespace CoachEasy.Data.Migrations
                 {
                     b.HasOne("CoachEasy.Data.Models.Coach", "Coach")
                         .WithMany("Courses")
-                        .HasForeignKey("CoachId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("CoachEasy.Data.Models.Picture", "Picture")
-                        .WithMany("Courses")
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CoachId");
                 });
 
             modelBuilder.Entity("CoachEasy.Data.Models.CourseClients", b =>

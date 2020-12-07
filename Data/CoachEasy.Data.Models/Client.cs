@@ -14,7 +14,7 @@
         public Client()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Coaches = new HashSet<CoachClients>();
+            this.Courses = new HashSet<CourseClients>();
             this.WorkoutsList = new HashSet<WorkoutsList>();
         }
 
@@ -37,7 +37,7 @@
         [Required]
         public virtual ApplicationUser User { get; set; }
 
-        public virtual ICollection<CoachClients> Coaches { get; set; }
+        public virtual ICollection<CourseClients> Courses { get; set; }
 
         public virtual ICollection<WorkoutsList> WorkoutsList { get; set; }
     }
