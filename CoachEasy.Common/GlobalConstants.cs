@@ -14,6 +14,8 @@
 
         public const string SuccessfullyAddedWorkout = "Workout successfully added to your list!";
 
+        public const string SuccessfullyAppliedToCourse = "You successfully applied to this course!";
+
         public const string WorkoutAlreadyAdded = "You've already added this workout to your list.";
 
         public const string InvalidWorkout = "Please select a valid workout to add.";

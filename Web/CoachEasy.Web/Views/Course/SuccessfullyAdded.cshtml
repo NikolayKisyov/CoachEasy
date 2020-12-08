@@ -1,0 +1,14 @@
+﻿@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "Success";
+}
+
+@if (this.TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success">@this.TempData["SuccessMessage"]</div>
+}
+
+<div class="justify-content-center">
+    <label class="font-weight-bold">Go back to all courses:</label>
+    <a asp-controller="Course" asp-action="All" type="button" class="btn btn-info">Return</a>
+</div>

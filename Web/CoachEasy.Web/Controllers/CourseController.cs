@@ -84,7 +84,19 @@
             var user = await this.userManager.GetUserAsync(this.User);
             var result = await this.coursesService.AddClientToCourse(id, user.Id);
 
+            if (result == "created")
+            {
+                this.TempData["SuccessMessage"] = GlobalConstants.SuccessfullyAppliedToCourse;
+                return this.RedirectToAction("SuccessfullyAdded");
+            }
+
             return this.RedirectToAction("All");
+        }
+
+        [HttpGet]
+        public IActionResult SuccessfullyAdded()
+        {
+            return this.View();
         }
     }
 }
