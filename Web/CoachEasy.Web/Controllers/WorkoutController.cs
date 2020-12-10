@@ -106,5 +106,18 @@
             await this.workoutsService.DeleteAsync(id);
             return this.RedirectToAction("All");
         }
+
+        [HttpGet]
+        public IActionResult Watch(string id)
+        {
+            var workout = this.workoutsService.GetWorkoutById(id);
+            var viewModel = new WatchViewModel()
+            {
+                WorkoutName = workout.Name,
+                VideoUrl = workout.VideoUrl,
+            };
+
+            return this.View(viewModel);
+        }
     }
 }

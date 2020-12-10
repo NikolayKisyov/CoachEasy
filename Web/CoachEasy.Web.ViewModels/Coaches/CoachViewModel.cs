@@ -21,8 +21,6 @@
 
         public string PictureUrl { get; set; }
 
-        public int ClientsCount { get; set; }
-
         public int CoachWorkoutsCount { get; set; }
     }
 }

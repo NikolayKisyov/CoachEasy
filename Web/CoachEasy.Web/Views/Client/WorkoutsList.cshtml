@@ -35,7 +35,7 @@
                     }
                     <li class="list-group-item">
                         <div>
-                            <a href="#" class="btn orangebackground font-weight-bold">Watch Workout</a>
+                            <a asp-controller="Workout" asp-action="Watch" asp-route-id="@workout.Id" class="btn orangebackground font-weight-bold">Watch Workout</a>
                             <a asp-controller="Client" asp-action="Delete" asp-route-id="@workout.Id" type="button" class="btn btn-danger">Delete</a>
                         </div>
                     </li>

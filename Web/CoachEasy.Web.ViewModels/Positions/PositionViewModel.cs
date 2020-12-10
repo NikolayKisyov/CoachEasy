@@ -5,12 +5,15 @@
     using System.Text;
 
     using CoachEasy.Data.Models;
+    using CoachEasy.Data.Models.Enums;
 
     public class PositionViewModel
     {
         public string Id { get; set; }
 
         public string Name { get; set; }
+
+        public PositionName PositionName { get; set; }
 
         public string Description { get; set; }
 

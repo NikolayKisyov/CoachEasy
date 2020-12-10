@@ -15,6 +15,7 @@
             this.Id = Guid.NewGuid().ToString();
             this.Courses = new HashSet<Course>();
             this.CoachWorkouts = new HashSet<Workout>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Required]
@@ -48,6 +49,7 @@
         public virtual ICollection<Course> Courses { get; set; }
 
         public virtual ICollection<Workout> CoachWorkouts { get; set; }
-        // TODO: Implement Courses in the future
+
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

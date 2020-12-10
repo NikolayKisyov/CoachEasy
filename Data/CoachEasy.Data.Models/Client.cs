@@ -16,6 +16,7 @@
             this.Id = Guid.NewGuid().ToString();
             this.Courses = new HashSet<CourseClients>();
             this.WorkoutsList = new HashSet<WorkoutsList>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Required]
@@ -40,5 +41,7 @@
         public virtual ICollection<CourseClients> Courses { get; set; }
 
         public virtual ICollection<WorkoutsList> WorkoutsList { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

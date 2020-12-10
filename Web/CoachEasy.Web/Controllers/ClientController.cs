@@ -11,6 +11,7 @@
     using CoachEasy.Services.Data.Client;
     using CoachEasy.Services.Data.Models;
     using CoachEasy.Web.ViewModels.Workouts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,7 @@
             this.userManager = userManager;
         }
 
+        [Authorize(Roles = GlobalConstants.ClientRoleName)]
         [HttpGet]
         public async Task<IActionResult> AddToWorkoutList(string id)
         {
@@ -51,6 +53,7 @@
             return this.RedirectToAction("All", "Workout");
         }
 
+        [Authorize(Roles = GlobalConstants.ClientRoleName)]
         [HttpGet]
         public async Task<IActionResult> WorkoutsList(int id = 1)
         {
@@ -72,6 +75,8 @@
             return this.View(viewModel);
         }
 
+        [Authorize(Roles = GlobalConstants.ClientRoleName)]
+        [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             var user = await this.userManager.GetUserAsync(this.User);

@@ -1,0 +1,13 @@
+﻿@model CoachEasy.Web.ViewModels.Workouts.WatchViewModel
+@using CoachEasy.Common
+@{
+    this.ViewData["Title"] = "Watch";
+}
+
+<div class="container">
+    <h3>@Model.WorkoutName</h3>
+    <iframe width="956" height="538" src="@Model.VideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div>
+        Check our more of our workouts: <a asp-controller="Workout" asp-action="All" type="button" class="btn btn-info">Return</a>
+    </div>
+</div>

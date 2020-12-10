@@ -29,6 +29,7 @@
                 {
                     Id = x.Id,
                     Name = x.Name.ToString(),
+                    PositionName = x.Name,
                     Description = x.Description,
                     Playstyle = x.Playstyle,
                     PlayerImageUrl = x.Players.First().ImageUrl,

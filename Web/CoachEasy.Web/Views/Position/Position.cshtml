@@ -2,7 +2,7 @@
 @using CoachEasy.Data.Models.Enums
 @using CoachEasy.Common
 @{
-    this.ViewData["Title"] = "Point Guard";
+    this.ViewData["Title"] = @Html.DisplayFor(model => Model.PositionName);
 }
 
 
@@ -16,20 +16,15 @@
 <hr />
 
 <div class="card-deck">
-    @foreach (var item in Model.Workouts.Where(x => x.PictureId == null))
+    @foreach (var workout in Model.Workouts.Where(x => x.PictureId == null))
     {
         <div class="card col-3 col-lg-6 game-card">
-            <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+            <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text">@item.Description</p>
+                <h5 class="card-title">@workout.Name</h5>
+                <p class="card-text">@workout.Description</p>
             </div>
-            <a href="#" class="btn btn-primary">Watch Workout</a>
+            <a asp-controller="Workout" asp-action="Watch" asp-route-id="@workout.Id" class="btn btn-primary">Watch Workout</a>
         </div>
     }
 </div>
-
-@foreach (var workout in Model.Workouts.Where(x => x.PictureId == null))
-{
-<iframe width="956" height="538" src="@workout.VideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-}
