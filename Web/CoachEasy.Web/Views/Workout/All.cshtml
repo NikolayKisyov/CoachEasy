@@ -40,7 +40,7 @@
 <div class="row">
     @foreach (var workout in Model.Workouts)
     {
-        <div class="card col-4 game-card mt-2">
+        <div class="card col-md-4 game-card mt-2">
             @if (!string.IsNullOrEmpty(workout.PictureUrl))
             {
                 <img src="@workout.PictureUrl" class="card-img-top img-fluid img-workout">

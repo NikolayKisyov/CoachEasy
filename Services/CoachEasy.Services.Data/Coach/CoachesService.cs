@@ -7,14 +7,14 @@
     using System.Threading.Tasks;
 
     using CoachEasy.Common;
-    using CoachEasy.Services.Mapping;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Picture;
+    using CoachEasy.Services.Mapping;
     using CoachEasy.Web.ViewModels;
-    using Microsoft.EntityFrameworkCore;
     using CoachEasy.Web.ViewModels.Coaches;
+    using Microsoft.EntityFrameworkCore;
 
     public class CoachesService : ICoachesService
     {
@@ -66,6 +66,28 @@
                 .ToListAsync();
 
             return coaches;
+        }
+
+        public async Task<CoachViewModel> GetCoachById(string id)
+        {
+            var coach = await this.coachRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .Select(x => new CoachViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Experience = x.Experience,
+                    Phone = x.Phone,
+                    Email = x.Email,
+                    PictureUrl = x.Picture.Url,
+                    CoachWorkoutsCount = x.CoachWorkouts.Count(),
+                    CoursesCount = x.Courses.Count(),
+                    Description = x.Description,
+                    AverageVote = !x.Votes.Any() ? 0 : x.Votes.Average(x => x.Value),
+                }).FirstOrDefaultAsync();
+
+            return coach;
         }
 
         public Coach GetCoachByUserId(string id)

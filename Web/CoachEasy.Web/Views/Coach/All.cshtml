@@ -7,17 +7,15 @@
 <div class="container col-12 d-inline-flex">
     @foreach (var coach in Model)
     {
-        <div class="card border-dark col-4 game-card mt-2">
+        <div class="card border-dark col-md-4 game-card mt-2">
             <div class="card-body">
                 <img src="@coach.PictureUrl"
                      class="card-img-top img-fluid img-coach">
                 <ul class="list-group mt-1 border-danger">
                     <li class="list-group-item bg-dark text-colorise">@coach.Name</li>
-                    <li class="list-group-item">Experience: @coach.Experience years</li>
-                    <li class="list-group-item">Phone: +@coach.Phone</li>
-                    <li class="list-group-item">Email: @coach.Email</li>
                     <li class="list-group-item">Workouts: @coach.CoachWorkoutsCount</li>
-                    <li class="list-group-item">Description: @coach.Description</li>
+                    <li class="list-group-item">Courses: @coach.CoursesCount</li>
+                        <a asp-controller="Coach" asp-action="Details" asp-route-id="@coach.Id" class="btn orangebackground font-weight-bold" role="button">Details</a>
                 </ul>
             </div>
         </div>

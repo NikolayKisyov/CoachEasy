@@ -12,11 +12,11 @@
         <div class="row">
             @if (!string.IsNullOrEmpty(workout.PictureUrl))
             {
-                <img src="@workout.PictureUrl" class="img-workoutlist" style="max-width:35%;" alt="Alternate Text" />
+                <img src="@workout.PictureUrl" class="img-workoutlist image-widthsize" alt="Alternate Text" />
             }
             else
             {
-                <img src="@workout.ImageUrl" class="img-workoutlist" style="max-width:35%;" alt="Alternate Text" />
+                <img src="@workout.ImageUrl" class="img-workoutlist image-widthsize" alt="Alternate Text" />
             }
             <div class="col">
                 <h3>@workout.Name</h3>

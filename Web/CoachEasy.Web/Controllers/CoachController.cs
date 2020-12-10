@@ -21,5 +21,13 @@
 
             return this.View(viewModel);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var viewModel = await this.coachesService.GetCoachById(id);
+
+            return this.View(viewModel);
+        }
     }
 }

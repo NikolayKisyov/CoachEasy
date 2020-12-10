@@ -5,26 +5,27 @@
     this.ViewData["Title"] = @Html.DisplayFor(model => Model.PositionName);
 }
 
-
-<div style="display: inline-flex">
-    <div class="p-2">@Model.Description</div>
-    <div class="p-2">
-        <img src="@Model.PlayerImageUrl" style="max-height: 250px; margin-bottom:-8px;">
-    </div>
-    <div class="p-2">@Model.Playstyle</div>
-</div>
-<hr />
-
-<div class="card-deck">
-    @foreach (var workout in Model.Workouts.Where(x => x.PictureId == null))
-    {
-        <div class="card col-3 col-lg-6 game-card">
-            <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@workout.Name</h5>
-                <p class="card-text">@workout.Description</p>
-            </div>
-            <a asp-controller="Workout" asp-action="Watch" asp-route-id="@workout.Id" class="btn btn-primary">Watch Workout</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 p-2">@Model.Description</div>
+        <div class="col-md-4 p-2">
+            <img src="@Model.PlayerImageUrl" class="position-image">
         </div>
-    }
+        <div class="col-md-4 p-2">@Model.Playstyle</div>
+    </div>
+    <hr />
+
+    <div class="card-deck">
+        @foreach (var workout in Model.Workouts.Where(x => x.PictureId == null))
+        {
+            <div class="card col-md-3 col-lg-6 game-card">
+                <img class="card-img-top" src="@workout.ImageUrl" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@workout.Name</h5>
+                    <p class="card-text">@workout.Description</p>
+                </div>
+                <a asp-controller="Workout" asp-action="Watch" asp-route-id="@workout.Id" class="btn btn-primary">Watch Workout</a>
+            </div>
+        }
+    </div>
 </div>

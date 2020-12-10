@@ -14,6 +14,7 @@
     using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Data.Course;
     using CoachEasy.Services.Data.Picture;
+    using CoachEasy.Services.Data.VotesService;
     using CoachEasy.Services.Data.Workout;
     using CoachEasy.Services.Mapping;
     using CoachEasy.Services.Messaging;
@@ -59,6 +60,10 @@
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
 
             services.AddSingleton(this.configuration);
 
@@ -78,6 +83,8 @@
             services.AddTransient<ICoachesService, CoachesService>();
             services.AddTransient<IClientsService, ClientsService>();
             services.AddTransient<ICoursesService, CoursesService>();
+            services.AddTransient<IVotesService, VotesService>();
+
 
             Account cloudinaryCredentials = new Account(
                                    this.configuration["Cloudinary:CloudName"],
