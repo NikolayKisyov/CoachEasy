@@ -73,7 +73,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IPlayersService, PlayersService>();
             services.AddTransient<IPositionsService, PositionsService>();
@@ -84,7 +84,6 @@
             services.AddTransient<IClientsService, ClientsService>();
             services.AddTransient<ICoursesService, CoursesService>();
             services.AddTransient<IVotesService, VotesService>();
-
 
             Account cloudinaryCredentials = new Account(
                                    this.configuration["Cloudinary:CloudName"],

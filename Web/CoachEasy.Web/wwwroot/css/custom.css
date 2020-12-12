@@ -63,6 +63,12 @@
     object-fit: cover;
 }
 
+.img-home {
+    margin-left: 90px;
+    width: 850px;
+    height: 570px;
+}
+
 .btn-resize {
     margin-right:90px;
     margin-left:90px; 
