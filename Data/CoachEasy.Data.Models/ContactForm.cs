@@ -8,31 +8,16 @@
 
     using CoachEasy.Data.Common.Models;
 
-    public class ContactForm : BaseDeletableModel<string>
+    public class ContactForm : BaseDeletableModel<int>
     {
-        public ContactForm()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        public string Name { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(20)]
-        public string LastName { get; set; }
-
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        [MaxLength(30)]
         public string Title { get; set; }
 
-        [Required]
-        [MaxLength(300)]
         public string Content { get; set; }
+
+        public string Ip { get; set; }
     }
 }

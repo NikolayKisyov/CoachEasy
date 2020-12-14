@@ -15,7 +15,7 @@
 
     public class WorkoutController : BaseController
     {
-        public const int ItemsPerPage = 9;
+        public const int ItemsPerPage = 12;
 
         private readonly IWorkoutsService workoutsService;
         private readonly UserManager<ApplicationUser> userManager;
@@ -100,7 +100,7 @@
         }
 
         [Authorize(Roles = "Coach")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
             await this.workoutsService.DeleteAsync(id);

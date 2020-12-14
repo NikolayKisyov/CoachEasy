@@ -58,16 +58,17 @@ namespace CoachEasy.Data.Migrations
                 name: "ContactForms",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    FirstName = table.Column<string>(maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(maxLength: 20, nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(maxLength: 30, nullable: false),
-                    Content = table.Column<string>(maxLength: 300, nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    Ip = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -357,6 +358,35 @@ namespace CoachEasy.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Votes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    CoachId = table.Column<string>(nullable: true),
+                    ClientId = table.Column<string>(nullable: true),
+                    Value = table.Column<byte>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Votes_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Votes_Coaches_CoachId",
+                        column: x => x.CoachId,
+                        principalTable: "Coaches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Workouts",
                 columns: table => new
                 {
@@ -589,6 +619,16 @@ namespace CoachEasy.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Votes_ClientId",
+                table: "Votes",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_CoachId",
+                table: "Votes",
+                column: "CoachId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Workouts_CoachId",
                 table: "Workouts",
                 column: "CoachId");
@@ -652,6 +692,9 @@ namespace CoachEasy.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Settings");
+
+            migrationBuilder.DropTable(
+                name: "Votes");
 
             migrationBuilder.DropTable(
                 name: "WorkoutsList");

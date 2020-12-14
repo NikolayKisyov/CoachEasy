@@ -76,7 +76,7 @@
         }
 
         [Authorize(Roles = GlobalConstants.ClientRoleName)]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
