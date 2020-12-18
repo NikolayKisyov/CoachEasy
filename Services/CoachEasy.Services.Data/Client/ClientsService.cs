@@ -20,8 +20,6 @@
     {
         private readonly IDeletableEntityRepository<Client> clientRepository;
         private readonly IRepository<WorkoutsList> workoutClientsrepository;
-        private readonly IDeletableEntityRepository<Workout> workoutsRepository;
-        private readonly IPositionsService positionsService;
 
         public ClientsService(
             IDeletableEntityRepository<Client> repository,
@@ -63,7 +61,7 @@
                 UserId = user.Id,
             };
 
-            if (client != null)
+            if (client != null && !string.IsNullOrEmpty(input.Phone))
             {
                 await this.clientRepository.AddAsync(client);
                 await this.clientRepository.SaveChangesAsync();
@@ -76,7 +74,7 @@
 
         public async Task<IEnumerable<WorkoutInListViewModel>> GetWorkouts(string userId, int page, int itemsPerPage)
         {
-            var result = await this.workoutClientsrepository
+            var result = this.workoutClientsrepository
                 .AllAsNoTracking()
                 .Where(x => x.Client.UserId == userId)
                 .Select(x => new WorkoutInListViewModel
@@ -91,7 +89,7 @@
                     AddedByCoach = x.Workout.AddedByCoach,
                 })
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                .ToListAsync();
+                .ToList();
 
             return result;
         }
@@ -125,7 +123,7 @@
 
         public async Task Delete(string workoutId, string userId)
         {
-            var client = this.clientRepository.AllAsNoTracking().FirstOrDefault(x => x.UserId == userId);
+            var client = this.clientRepository.All().FirstOrDefault(x => x.UserId == userId);
 
             var workout = this.workoutClientsrepository.All()
                 .FirstOrDefault(x => x.WorkoutId == workoutId && x.ClientId == client.Id);

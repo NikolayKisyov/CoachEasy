@@ -1,4 +1,4 @@
-﻿namespace CoachEasy.Services.Data.VotesService
+﻿namespace CoachEasy.Services.Data.Votes
 {
     using System;
     using System.Collections.Generic;

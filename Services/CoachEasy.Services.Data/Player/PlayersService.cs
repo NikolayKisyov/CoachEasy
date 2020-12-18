@@ -9,7 +9,6 @@
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Mapping;
-    using CoachEasy.Web.Controllers;
     using Microsoft.EntityFrameworkCore;
 
     public class PlayersService : IPlayersService
@@ -23,10 +22,10 @@
 
         public async Task<IEnumerable<T>> GetAllPlayersAsync<T>()
         {
-            var players = await this.repository
+            var players = this.repository
                 .AllAsNoTracking()
                 .To<T>()
-                .ToListAsync();
+                .ToList();
 
             return players;
         }

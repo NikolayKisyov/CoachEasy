@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using CoachEasy.Services.Data;
+    using CoachEasy.Web.ViewModels.Players;
     using Microsoft.AspNetCore.Mvc;
 
     public class PlayerController : BaseController

@@ -6,7 +6,7 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using CoachEasy.Services.Data.VotesService;
+    using CoachEasy.Services.Data.Votes;
     using CoachEasy.Web.ViewModels.Votes;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

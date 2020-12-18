@@ -10,7 +10,6 @@
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
     using CoachEasy.Services.Data.Cloudinary;
-    using CoachEasy.Services.Data.Picture;
     using CoachEasy.Services.Mapping;
     using CoachEasy.Web.ViewModels;
     using CoachEasy.Web.ViewModels.Coaches;
@@ -60,17 +59,17 @@
 
         public async Task<IEnumerable<T>> GetAllCoachesAsync<T>()
         {
-            var coaches = await this.coachRepository
+            var coaches = this.coachRepository
                 .AllAsNoTracking()
                 .To<T>()
-                .ToListAsync();
+                .ToList();
 
             return coaches;
         }
 
         public async Task<CoachViewModel> GetCoachById(string id)
         {
-            var coach = await this.coachRepository
+            var coach = this.coachRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .Select(x => new CoachViewModel
@@ -85,7 +84,7 @@
                     CoursesCount = x.Courses.Count(),
                     Description = x.Description,
                     AverageVote = !x.Votes.Any() ? 0 : x.Votes.Average(x => x.Value),
-                }).FirstOrDefaultAsync();
+                }).FirstOrDefault();
 
             return coach;
         }

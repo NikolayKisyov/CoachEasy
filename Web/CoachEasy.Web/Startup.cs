@@ -13,8 +13,7 @@
     using CoachEasy.Services.Data.Cloudinary;
     using CoachEasy.Services.Data.Coach;
     using CoachEasy.Services.Data.Course;
-    using CoachEasy.Services.Data.Picture;
-    using CoachEasy.Services.Data.VotesService;
+    using CoachEasy.Services.Data.Votes;
     using CoachEasy.Services.Data.Workout;
     using CoachEasy.Services.Mapping;
     using CoachEasy.Services.Messaging;
@@ -78,7 +77,6 @@
             services.AddTransient<IPlayersService, PlayersService>();
             services.AddTransient<IPositionsService, PositionsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IPicturesService, PicturesService>();
             services.AddTransient<IWorkoutsService, WorkoutsService>();
             services.AddTransient<ICoachesService, CoachesService>();
             services.AddTransient<IClientsService, ClientsService>();

@@ -10,7 +10,7 @@
     {
         public string CoachId { get; set; }
 
-        public virtual Coach Cach { get; set; }
+        public virtual Coach Coach { get; set; }
 
         public string ClientId { get; set; }
 

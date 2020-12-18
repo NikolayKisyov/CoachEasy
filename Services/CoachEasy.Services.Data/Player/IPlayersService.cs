@@ -5,7 +5,6 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using CoachEasy.Web.Controllers;
 
     public interface IPlayersService
     {

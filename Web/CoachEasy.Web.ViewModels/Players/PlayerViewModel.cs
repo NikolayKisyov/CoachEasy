@@ -1,4 +1,4 @@
-﻿namespace CoachEasy.Web.Controllers
+﻿namespace CoachEasy.Web.ViewModels.Players
 {
     using System;
     using System.Collections.Generic;

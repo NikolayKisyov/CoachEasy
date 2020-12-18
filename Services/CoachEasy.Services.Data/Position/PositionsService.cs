@@ -23,18 +23,17 @@
 
         public async Task<PositionViewModel> GetPlayerAsync(string id)
         {
-            var player = await this.repository
+            var player = this.repository
                 .AllAsNoTracking()
                 .Where(x => x.Players.First().Id == id).Select(x => new PositionViewModel
                 {
                     Id = x.Id,
-                    Name = x.Name.ToString(),
                     PositionName = x.Name,
                     Description = x.Description,
                     Playstyle = x.Playstyle,
                     PlayerImageUrl = x.Players.First().ImageUrl,
                     Workouts = x.Workouts,
-                }).FirstOrDefaultAsync();
+                }).FirstOrDefault();
 
             return player;
         }
