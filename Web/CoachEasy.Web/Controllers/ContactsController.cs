@@ -50,7 +50,7 @@
             await this.contactsRepository.SaveChangesAsync();
 
             await this.emailSender.SendEmailAsync(
-                model.Email,
+                GlobalConstants.FromEmail,
                 model.Name,
                 GlobalConstants.SystemEmail,
                 model.Title,

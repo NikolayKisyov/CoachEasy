@@ -26,10 +26,10 @@
 
         public const string InvalidOperationExceptionWhileCreatingClient = "Exception happened in ClientService while creating client in IDeletableEntityRepository<Client>";
 
-        public const string InvalidOperationExceptionInPictureService = "Exception happened in PictureService while adding the Picture to IDeletableEntityRepository<Picture>";
-
         public const string InvalidOperationExceptionInClientsService = "Exception happened in ClientsService while adding Workout to Client WorkoutList";
 
-        public const string SystemEmail = "coacheasy@abv.bg";
+        public const string SystemEmail = "bjergsenpai23@gmail.com";
+
+        public const string FromEmail = "coacheasy@abv.bg";
     }
 }
