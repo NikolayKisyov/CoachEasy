@@ -1,5 +1,10 @@
 ﻿namespace CoachEasy.Services.Data.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using CoachEasy.Data;
     using CoachEasy.Data.Common.Repositories;
     using CoachEasy.Data.Models;
@@ -9,10 +14,6 @@
     using CoachEasy.Web.ViewModels;
     using Microsoft.EntityFrameworkCore;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class ClientsServiceTests

@@ -12,8 +12,6 @@
     {
         (IEnumerable<T> Workouts, int Count) GetSearchedPositions<T>(SearchWorkoutInputModel inputModel, int page, int itemsPerPage);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
-
         int GetCount();
 
         Task CreateAsync(CreateWorkoutInputModel input, string userId);

@@ -137,16 +137,6 @@
             return (query.To<T>().Take(itemsPerPage).ToList(), query.To<T>().ToList().Count);
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
-        {
-            return this.workoutsRepository
-                .AllAsNoTracking()
-                .OrderByDescending(x => x.CreatedOn)
-                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-        }
-
         public Workout GetWorkoutById(string id)
         {
             return this.workoutsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
